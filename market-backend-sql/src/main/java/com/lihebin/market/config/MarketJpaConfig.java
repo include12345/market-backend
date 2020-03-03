@@ -1,6 +1,5 @@
 package com.lihebin.market.config;
 
-import com.lihebin.market.model.Merchant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -29,7 +28,7 @@ import javax.sql.DataSource;
 public class MarketJpaConfig {
 
     @Autowired
-    private DataSource dataSource;
+    private DataSource marketDataSource;
 
     @Autowired
     private JpaProperties jpaProperties;
@@ -45,7 +44,7 @@ public class MarketJpaConfig {
     @Bean(name = "entityManagerFactoryMarket")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryMarket(EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(dataSource).packages("com.lihebin.market.model")//设置实体类所在位置
+                .dataSource(marketDataSource).packages("com.lihebin.market.model")//设置实体类所在位置
                 .properties(jpaProperties.getProperties())
                 .persistenceUnit("marketPersistenceUnit")//持久化单元创建一个默认即可，多个便要分别命名
                 .build();

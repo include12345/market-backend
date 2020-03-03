@@ -26,8 +26,8 @@ public class SimpleSnGeneratorDao {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleSnGeneratorDao.class);
 
-    @Resource(name = "manageJdbcTemplate")
-    JdbcTemplate manageJdbcTemplate;
+    @Resource(name = "marketJdbcTemplate")
+    JdbcTemplate marketJdbcTemplate;
 
     private static final Random random = new Random();
     private int retries = 3;
@@ -77,7 +77,7 @@ public class SimpleSnGeneratorDao {
         final KeyHolder keyHolder = new GeneratedKeyHolder();
         for (int i=0; i< retries; ++i) {
             try {
-                manageJdbcTemplate.update(
+                marketJdbcTemplate.update(
                         con -> {
                             //                PreparedStatement ps = con.prepareStatement("replace into order_ticket (stub) values ( ? )", new String[] {"id"});
                             PreparedStatement ps = con.prepareStatement(getTicketSql, Statement.RETURN_GENERATED_KEYS);

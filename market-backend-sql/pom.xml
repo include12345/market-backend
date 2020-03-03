@@ -9,8 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>market-backend-utils</artifactId>
-    <packaging>jar</packaging>
+    <groupId>com.lihebin.market</groupId>
+    <artifactId>market-backend-sql</artifactId>
 
+    <dependencies>
 
+        <dependency>
+            <groupId>com.lihebin.market</groupId>
+            <artifactId>market-backend-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
