@@ -1,5 +1,6 @@
 package com.lihebin.market.service;
 
+import com.lihebin.market.model.MerchantConsumer;
 import com.lihebin.market.params.ConsumerAdd;
 import com.lihebin.market.params.ConsumerRes;
 import com.lihebin.market.params.ConsumerUpdate;
@@ -61,5 +62,25 @@ public interface ConsumerService {
      * @return
      */
     ConsumerRes updateMerchantConsumer(String token, ConsumerUpdate consumerUpdate);
+
+
+    /**
+     * build MerchantConsumerRes
+     *
+     * @param merchantConsumer
+     * @return
+     */
+    default ConsumerRes buildMerchantConsumerRes(MerchantConsumer merchantConsumer) {
+        ConsumerRes merchantConsumerRes = new ConsumerRes();
+        merchantConsumerRes.setId(merchantConsumer.getId());
+        merchantConsumerRes.setMerchantId(merchantConsumer.getMerchantId());
+        merchantConsumerRes.setConsumerCellphone(merchantConsumer.getCellphone());
+        merchantConsumerRes.setConsumerEmail(merchantConsumer.getEmail());
+        merchantConsumerRes.setConsumerName(merchantConsumer.getName());
+        merchantConsumerRes.setConsumerWechat(merchantConsumer.getWechat());
+        merchantConsumerRes.setCtime(merchantConsumer.getCtime());
+        merchantConsumerRes.setMtime(merchantConsumer.getMtime());
+        return merchantConsumerRes;
+    }
 
 }

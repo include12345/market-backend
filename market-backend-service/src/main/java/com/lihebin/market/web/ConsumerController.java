@@ -17,7 +17,7 @@ import java.util.Optional;
  * Created by lihebin on 2019/5/22.
  */
 @RestController
-@RequestMapping("/api/merchant")
+@RequestMapping("/api/merchant/consumer")
 public class ConsumerController {
 
     @Autowired

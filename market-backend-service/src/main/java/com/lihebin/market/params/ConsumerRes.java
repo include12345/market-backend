@@ -22,33 +22,9 @@ public class ConsumerRes {
 
     private Long id;
 
-    private Long walletId;
-
-    private Long balance;
-
     private Date ctime;
 
     private Date mtime;
-
-    private Date walletCtime;
-
-    private Date walletMtime;
-
-    public Long getWalletId() {
-        return walletId;
-    }
-
-    public void setWalletId(Long walletId) {
-        this.walletId = walletId;
-    }
-
-    public Long getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Long balance) {
-        this.balance = balance;
-    }
 
     public String getConsumerName() {
         return consumerName;
@@ -114,19 +90,4 @@ public class ConsumerRes {
         this.mtime = mtime;
     }
 
-    public Date getWalletCtime() {
-        return walletCtime;
-    }
-
-    public void setWalletCtime(Date walletCtime) {
-        this.walletCtime = walletCtime;
-    }
-
-    public Date getWalletMtime() {
-        return walletMtime;
-    }
-
-    public void setWalletMtime(Date walletMtime) {
-        this.walletMtime = walletMtime;
-    }
 }

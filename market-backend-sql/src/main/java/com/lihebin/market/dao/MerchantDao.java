@@ -9,4 +9,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MerchantDao extends JpaRepository<Merchant, Long> {
+
+    /**
+     * 根据商户名查商户
+     *
+     * @param name
+     * @return
+     */
+    Merchant findByName(String name);
 }
