@@ -4,6 +4,7 @@ import com.lihebin.market.model.MerchantProduct;
 import com.lihebin.market.params.*;
 import org.springframework.data.domain.Page;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.Optional;
 
@@ -21,9 +22,10 @@ public interface ProductService {
      * @param pageSize
      * @return
      */
-    Page<ConsumerRes> listProductPaging(String token, Optional<Date> ctimeStart, Optional<Date> ctimeEnd,
-                                                 Optional<String> name, Optional<String> cellphone,
-                                                 int pageNo, int pageSize);
+    Page<ConsumerRes> listProductPaging(String token, Optional<String> name,
+                                        Optional<Long> industryId, Optional<Long> status,
+                                        Optional<Date> ctimeStart, Optional<Date> ctimeEnd,
+                                        int pageNo, int pageSize);
 
 
 
@@ -81,5 +83,19 @@ public interface ProductService {
 //        return merchantConsumerRes;
         return null;
     }
+
+    Page<IndustryRes> listIndustryPaging(Optional<String> level1, Optional<String> level2,
+                                         Optional<String> level3, Optional<String> level4,
+                                         int pageNo, int pageSize);
+
+
+    IndustryRes getIndustry(long industryId);
+
+
+    void deleteIndustry(long id);
+
+    IndustryRes addIndustry(IndustryAdd industryAdd);
+
+    IndustryRes updateIndustry(IndustryUpdate industryUpdate);
 
 }
