@@ -1,5 +1,6 @@
 package com.lihebin.market.params;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
@@ -9,54 +10,34 @@ import javax.validation.constraints.Pattern;
  * 商户产品
  * Created by lihebin on 2019/4/15.
  */
+@Data
 public class ProductAdd {
 
     @NotBlank
     @Length(max = 128, message = "会员名称长度范围0-128个字符")
     private String name;
 
-    @NotBlank(message = "手机号不能为空")
-    @Pattern(regexp = "^[1][3,4,5,6,7,8,9][0-9]{9}$", message = "手机号不合法")
-    private String cellphone;
+    @NotBlank(message = "商品优先级不能为空")
+    private Integer priority;
+
+    @NotBlank(message = "商品价格不能为空")
+    private Long price;
 
 
-    @Pattern(regexp = "/^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$/", message = "邮箱不合法")
-    private String email;
+    @NotBlank(message = "商品数量不能为空")
+    private Long count;
 
-    @Length(max = 128, message = "会员微信号长度范围0-128个字符")
-    private String wechat;
+    @NotBlank(message = "商品原价不能为空")
+    private Long originalPrice;
 
+    @Length(max = 128, message = "图片地址长度范围0-128个字符")
+    private String image;
 
-    public String getName() {
-        return name;
-    }
+    private String context;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCellphone() {
-        return cellphone;
-    }
-
-    public void setCellphone(String cellphone) {
-        this.cellphone = cellphone;
-    }
+    @NotBlank(message = "商品类型不能为空")
+    private Long industryId;
 
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getWechat() {
-        return wechat;
-    }
-
-    public void setWechat(String wechat) {
-        this.wechat = wechat;
-    }
 }

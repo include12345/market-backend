@@ -40,6 +40,11 @@ public class IndustryController {
                 pageNo, pageSize));
     }
 
+    @RequestMapping(value = "/listIndustryAll", method = RequestMethod.GET)
+    public Result listIndustryAll() {
+        return ResultUtil.success(productService.listIndustrys());
+    }
+
 //    @RequestMapping(value = "/logout", method = RequestMethod.GET)
 //    public void logout(@RequestParam(value = "token", required = true) String token) {
 //        merchantUserService.logout(token);

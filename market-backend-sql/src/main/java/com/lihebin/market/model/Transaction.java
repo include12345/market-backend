@@ -33,8 +33,8 @@ public class Transaction implements Serializable {
     @Column
     private Boolean deleted = false;
 
-    @Column(name = "order_sn")
-    private String orderSn;
+    @Column(name = "order_id")
+    private String orderId;
 
     @Column
     private String name;
