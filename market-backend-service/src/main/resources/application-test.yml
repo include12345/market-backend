@@ -37,8 +37,12 @@ spring:
             min-idle: 0
         port: 6379
         timeout: 30000
+    servlet:
+        multipart:
+          max-file-size: 20MB
+          max-request-size: 100MB
 url:
     login:
-        email: include_lihebin@163.com
-        password: include155121214
-    picture: http://47.95.208.59:6010
+        username: root
+        password: include
+    picture: http://129.28.192.214:6010

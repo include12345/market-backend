@@ -19,5 +19,7 @@
             <artifactId>market-backend-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+
     </dependencies>
 </project>
