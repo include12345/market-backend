@@ -3,6 +3,7 @@ package com.lihebin.market.config;
 import com.lihebin.market.bean.Code;
 import com.lihebin.market.cache.RedisDao;
 import com.lihebin.market.exception.BackendException;
+import com.lihebin.market.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,10 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         log.info("TokenInterceptor:{}", token);
 //        String[] param = token.split("-");
 //        String method = request.getRequestURI();
-//        String username = redisDao.getValue(token);
-//        if (StringUtil.empty(username)) {
-//            throw new BackendException(Code.CODE_TIME_OUT, "登录超时");
-//        }
+        String username = redisDao.getValue(token);
+        if (StringUtil.empty(username)) {
+            throw new BackendException(Code.CODE_TIME_OUT, "登录超时");
+        }
 //
         return true;
     }

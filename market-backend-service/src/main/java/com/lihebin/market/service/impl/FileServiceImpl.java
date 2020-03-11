@@ -81,7 +81,7 @@ public class FileServiceImpl implements FileService {
         ResponseEntity<Map> loginResult = restTemplate.postForEntity(String.format("%s/api/user/login", pictureUrl), formEntity, Map.class);
         String cookie = loginResult.getHeaders().getFirst(HttpHeaders.SET_COOKIE);
         String code = MapUtils.getString(loginResult.getBody(), CODE);
-        if (!CODE_OK.equalsIgnoreCase(code)) {
+        if (!CODE_OK.equals(code)) {
             log.error("uploadPicture: {},{}", "登录失败", loginResult);
             throw new BackendException(Code.CODE_PARAM_ERROR, "上传文件失败");
         }
@@ -103,7 +103,7 @@ public class FileServiceImpl implements FileService {
         HttpEntity<MultiValueMap<String, Object>> uploadEntity = new HttpEntity<>(param, headersUpload);
         Map uploadResult = restTemplate.postForObject(String.format("%s/api/matter/upload", pictureUrl), uploadEntity, Map.class);
         code = MapUtils.getString(uploadResult, CODE);
-        if (!CODE_OK.equalsIgnoreCase(code)) {
+        if (!CODE_OK.equals(code)) {
             log.error("uploadPicture: {},{}", "上传文件失败", uploadResult);
             throw new BackendException(Code.CODE_PARAM_ERROR, "上传文件失败");
         }

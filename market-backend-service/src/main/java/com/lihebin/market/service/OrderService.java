@@ -61,7 +61,7 @@ public interface OrderService {
         TransactionRes transactionRes = new TransactionRes();
         transactionRes.setId(transaction.getId());
         transactionRes.setName(transaction.getName());
-        transactionRes.setOrderSn(transaction.getOrderSn());
+        transactionRes.setOrderId(transaction.getOrderId());
         transactionRes.setDiscount(transaction.getDiscount());
         transactionRes.setOriginalAmount(transaction.getOriginalAmount());
         transactionRes.setPayAmount(transaction.getPayAmount());

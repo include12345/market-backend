@@ -34,7 +34,7 @@ public class Transaction implements Serializable {
     private Boolean deleted = false;
 
     @Column(name = "order_id")
-    private String orderId;
+    private Long orderId;
 
     @Column
     private String name;
