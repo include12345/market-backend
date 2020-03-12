@@ -24,6 +24,9 @@ public class ProductUpdate {
     @NotBlank(message = "商品优先级不能为空")
     private Integer priority;
 
+    @NotBlank(message = "商品状态不能为空")
+    private Integer status;
+
     @NotBlank(message = "商品价格不能为空")
     private Long price;
 

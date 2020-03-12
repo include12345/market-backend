@@ -130,6 +130,7 @@ public class ProductServiceImpl implements ProductService {
         merchantProduct.setPrice(productUpdate.getPrice());
         merchantProduct.setImage(productUpdate.getImage());
         merchantProduct.setCount(productUpdate.getCount());
+        merchantProduct.setStatus(productUpdate.getStatus());
         merchantProduct.setContext(productUpdate.getContext());
         merchantProduct.setOperatorUpdate(userMessage.getUsername());
         merchantProductDao.save(merchantProduct);
