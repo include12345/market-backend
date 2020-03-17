@@ -103,6 +103,7 @@ public class ProductServiceImpl implements ProductService {
         merchantProduct.setImage(productAdd.getImage());
         merchantProduct.setCount(productAdd.getCount());
         merchantProduct.setContext(productAdd.getContext());
+        merchantProduct.setStatus(0);
         merchantProduct.setOperatorCreate(userMessage.getUsername());
         merchantProduct.setOperatorUpdate(userMessage.getUsername());
         merchantProduct = merchantProductDao.save(merchantProduct);
@@ -119,7 +120,7 @@ public class ProductServiceImpl implements ProductService {
         long merchantId = userMessage.getMerchantId();
         MerchantProduct merchantProduct = checkMerchantProduct(token, productUpdate.getId());
         MerchantProduct merchantProductByName = merchantProductDao.findByMerchantIdAndName(merchantId, productUpdate.getName());
-        if (merchantProductByName != null && merchantProductByName.getId().equals(productUpdate.getId())) {
+        if (merchantProductByName != null && !merchantProductByName.getId().equals(productUpdate.getId())) {
             throw new BackendException(Code.CODE_EXIST, "商户商品名称[%s]已存在", merchantProductByName.getName());
         }
 

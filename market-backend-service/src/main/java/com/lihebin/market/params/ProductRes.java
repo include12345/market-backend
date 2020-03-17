@@ -26,11 +26,15 @@ public class ProductRes {
 
     private Long originalPrice;
 
+    private String imageMaster;
+
     private String image;
 
     private String context;
 
     private Long industryId;
+
+    private Integer status;
 
     private String industryLevel1;
 

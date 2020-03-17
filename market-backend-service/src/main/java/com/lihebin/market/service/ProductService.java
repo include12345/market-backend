@@ -104,10 +104,15 @@ public interface ProductService {
         productRes.setCount(merchantProduct.getCount());
         productRes.setName(merchantProduct.getName());
         productRes.setImage(merchantProduct.getImage());
+        if (merchantProduct.getImage() != null) {
+            String[] images = merchantProduct.getImage().split(",");
+            productRes.setImageMaster(images[0]);
+        }
         productRes.setContext(merchantProduct.getContext());
         productRes.setPrice(merchantProduct.getPrice());
         productRes.setOriginalPrice(merchantProduct.getOriginalPrice());
         productRes.setPriority(merchantProduct.getPriority());
+        productRes.setStatus(merchantProduct.getStatus());
         if (industryMap.containsKey(merchantProduct.getIndustryId())) {
             Industry industry = industryMap.get(merchantProduct.getIndustryId());
             productRes.setIndustryLevel1(industry.getLevel1());

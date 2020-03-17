@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
  * Created by lihebin on 29/01/2018.
  */
@@ -71,7 +73,7 @@ public class ServiceLogAspect {
   //请求method前打印内容
   @Before(value = "webAspect()")
   public void webBefore(JoinPoint joinPoint){
-    log.info("[ID{}][{}] web request>>:[{}]", Thread.currentThread().getId(), joinPoint.getSignature().getName(), JSON.toJSONString(joinPoint.getArgs()));
+    log.info("[ID{}][{}] web request>>:[{}]", Thread.currentThread().getId(), joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
   }
 
   //在方法执行完结后打印返回内容

@@ -123,7 +123,7 @@ create table if not exists `market`.`merchant_product`(
   `price` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '商品价格',
   `original_price` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '原价',
   `count` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '商品数量',
-  `image` varchar(128) null comment '图片地址',
+  `image` text COLLATE utf8mb4_bin,
   `context` text COLLATE utf8mb4_bin,
   `status` int(10) unsigned null default null comment '商品状态 0:待发布 1:审核中 2:审核通过 3:审核不通过',
   `merchant_id` bigint(20)  NOT NULL COMMENT '商户id',
