@@ -64,7 +64,7 @@ public class ServiceLogAspect {
 
 
     //申明一个切点 里面是 execution表达式
-  @Pointcut("execution(public * com.lihebin.market.web.*.*(..))")
+  @Pointcut("execution(public * com.lihebin.market.web.*.*(..)) && !execution(public * com.lihebin.market.web.FileController.*(..))")
   private void webAspect(){
 
   }
@@ -73,7 +73,7 @@ public class ServiceLogAspect {
   //请求method前打印内容
   @Before(value = "webAspect()")
   public void webBefore(JoinPoint joinPoint){
-    log.info("[ID{}][{}] web request>>:[{}]", Thread.currentThread().getId(), joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
+    log.info("[ID{}][{}] web request>>:[{}]", Thread.currentThread().getId(), joinPoint.getSignature().getName(), JSON.toJSONString(joinPoint.getArgs()));
   }
 
   //在方法执行完结后打印返回内容
