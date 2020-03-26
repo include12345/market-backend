@@ -63,8 +63,8 @@ public class Transaction implements Serializable {
     @Column
     private Integer status;
 
-    @Version
-    private Long version;
+//    @Version
+//    private Long version;
 
     @CreatedDate
     @Column(name = "ctime")

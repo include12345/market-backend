@@ -15,7 +15,7 @@ import java.util.Date;
  * Created by lihebin on 2019/4/15.
  */
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 @EntityListeners(AuditingEntityListener.class)
 @Data
 public class Order implements Serializable {
@@ -42,8 +42,8 @@ public class Order implements Serializable {
     @Column
     private Boolean deleted = false;
 
-    @Version
-    private Long version;
+//    @Version
+//    private Long version;
 
     @Column
     private String sn;
@@ -66,8 +66,8 @@ public class Order implements Serializable {
     @Column(name = "merchant_id")
     private Long merchantId;
 
-    @Column(name = "consumer_id")
-    private String consumerId;
+//    @Column(name = "consumer_id")
+//    private String consumerId;
 
     @Column
     private Integer type;

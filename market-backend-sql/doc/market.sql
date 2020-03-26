@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `market`.`merchant_consumer` (
 -- -----------------------------------------------------
 create table if not exists `market`.`transaction`(
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_sn` varchar(32) not null comment '订单号',
+  `order_id` bigint(20) not null comment '订单号',
   `name` varchar(128) not null comment '流水描述',
   `remark` varchar(128) null comment '流水备注',
   `original_amount` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '原始金额',
@@ -83,7 +83,7 @@ create table if not exists `market`.`transaction`(
   `mtime` timestamp NULL COMMENT '最近一次更新时间',
   `deleted` tinyint(1) default '0' comment '',
   primary key (`id`) comment '',
-  index `order_sn` (`order_sn` asc) comment ''
+  index `order_id` (`order_id` asc) comment ''
 )engine=InnoDB
   comment='交易流水表';
 
