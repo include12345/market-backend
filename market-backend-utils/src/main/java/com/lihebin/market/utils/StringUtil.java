@@ -108,5 +108,13 @@ public class StringUtil {
     }
 
 
+    /**
+     * 生成uuid
+     *
+     * @return
+     */
+    public static String createUUID() {
+        return UUID.randomUUID().toString().replace("-", "");
+    }
 
 }

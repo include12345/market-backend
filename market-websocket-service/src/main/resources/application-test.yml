@@ -1,0 +1,48 @@
+salt_password: 78683a7a-f258-11e5-ab7f-00163e0043c9
+spring:
+    datasource:
+        market:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            initialSize: 5
+            maxActive: 30
+            maxPoolPreparedStatementPerConnectionSize: 20
+            maxWait: 60000
+            minEvictableIdleTimeMillis: 300000
+            minIdle: 5
+            password: Include_123456
+            poolPreparedStatements: false
+            testOnBorrow: false
+            testOnReturn: false
+            testWhileIdle: true
+            timeBetweenEvictionRunsMillis: 60000
+            url: jdbc:mysql://129.28.192.214:3306/market?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=PRC&useSSL=false
+            username: root
+            validationQuery: SELECT 'x'
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+                format_sql: true
+                hbm2ddl:
+                    auto: none
+        show-sql: true
+    redis:
+        database: 2
+        host: 129.28.192.214
+        password: Include_123456
+        pool:
+            max-active: 8
+            max-idle: 8
+            max-wait: -1
+            min-idle: 0
+        port: 6379
+        timeout: 30000
+    servlet:
+        multipart:
+          max-file-size: 20MB
+          max-request-size: 100MB
+url:
+    login:
+        username: root
+        password: include
+    picture: http://129.28.192.214:6010

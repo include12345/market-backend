@@ -12,6 +12,7 @@
         <module>market-backend-service</module>
         <module>market-backend-utils</module>
         <module>market-backend-sql</module>
+        <module>market-websocket-service</module>
     </modules>
 
     <parent>
@@ -54,6 +55,19 @@
             <artifactId>lombok</artifactId>
             <version>1.18.2</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
         </dependency>
 
         <!--mysql-->

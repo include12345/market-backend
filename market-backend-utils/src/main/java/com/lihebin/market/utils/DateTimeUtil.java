@@ -1,5 +1,8 @@
 package com.lihebin.market.utils;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.springframework.util.Assert;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +20,16 @@ public class DateTimeUtil {
     private static final DateFormat monthFormat = new SimpleDateFormat("yyyy-MM");
     private static final DateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final DateFormat datetimeCustomFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+
+    /**
+     * 发送消息时间格式
+     */
+    public static final String SEND_TIME_FORMAT = "yyyy/MM/dd HH:mm";
+
+    /**
+     * 聊天记录文件名为指定时间格式的字符
+     */
+    public static final String CHAT_RECORD_FILE_NAME = "yyyyMMdd";
 
 
 
@@ -468,5 +481,42 @@ public class DateTimeUtil {
         return calendar.getTime();
     }
 
+
+    /**
+     * 格式化当前日期
+     *
+     * @param format 日期格式
+     * @return 返回格式化后的日期字符串
+     */
+    public static String getDate(String format) {
+        Assert.notNull(format, "日期格式不能为空");
+        return DateFormatUtils.format(new Date(), format);
+    }
+
+    /**
+     * 格式化指定时间戳
+     *
+     * @param timestamp 需要格式化的时间戳
+     * @param format    日期格式
+     * @return 返回格式化后的日期字符串
+     */
+    public static String getDate(long timestamp, String format) {
+        Assert.state(timestamp >= 0, "时间戳不能为负数");
+        Assert.notNull(format, "日期格式不能为空");
+        return DateFormatUtils.format(timestamp, format);
+    }
+
+    /**
+     * 格式化指定日期对象
+     *
+     * @param date   需要格式化的日期对象
+     * @param format 日期格式
+     * @return 返回格式化后的日期字符串
+     */
+    public static String getDate(Date date, String format) {
+        Assert.notNull(date, "日期对象不能为空");
+        Assert.notNull(format, "日期格式不能为空");
+        return DateFormatUtils.format(date, format);
+    }
 
 }

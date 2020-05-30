@@ -1,5 +1,7 @@
 package com.lihebin.market.exception;
 
+import com.lihebin.market.enums.Code;
+
 /**
  * Created by lihebin on 2018/6/25.
  */
@@ -9,8 +11,15 @@ public class BackendException extends RuntimeException {
 
     private String message;
 
+
     public BackendException() {
 
+    }
+
+
+    public BackendException(Code codeEnum) {
+        this.code = codeEnum.getCode();
+        this.message = codeEnum.getDesc();
     }
 
     public BackendException(Integer code, String message) {
