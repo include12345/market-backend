@@ -31,7 +31,7 @@ public interface MessageService {
      * @param code
      * @param user
      */
-    void sendErrorMessage(Code code, User user);
+    void sendErrorMessage(int code, String message, User user);
 
 
     /**

@@ -1,13 +1,14 @@
 package com.lihebin.market.exception;
 
 import com.lihebin.market.enums.Code;
+import com.lihebin.market.enums.CodeEnum;
 
 /**
  * Created by lihebin on 2018/6/25.
  */
 public class BackendException extends RuntimeException {
 
-    private Integer code;
+    private int code;
 
     private String message;
 
@@ -22,24 +23,27 @@ public class BackendException extends RuntimeException {
         this.message = codeEnum.getDesc();
     }
 
-    public BackendException(Integer code, String message) {
+    public BackendException(int code, String message) {
         super(message);
         this.code = code;
         this.message = message;
     }
 
 
-    public BackendException(Integer code, String message, Object... args) {
+    public BackendException(int code, String message, Object... args) {
         this(code, String.format(message, args));
     }
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+
+
+    public void setCode(int code) {
         this.code = code;
     }
+
 
     @Override
     public String getMessage() {
