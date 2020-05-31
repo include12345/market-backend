@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         String sign = MD5Util.getSign(con);
         String value = String.format("%s-%d", login.getUsername(), merchantUser.getMerchant_id());
         redisDao.removeValue(sign);
-        redisDao.cacheValue(sign, value, 120, TimeUnit.MINUTES);
+        redisDao.cacheValue(sign, value, 15, TimeUnit.DAYS);
         LoginRes loginRes = new LoginRes();
         loginRes.setToken(sign);
         loginRes.setMerchantId(merchantUser.getMerchant_id());

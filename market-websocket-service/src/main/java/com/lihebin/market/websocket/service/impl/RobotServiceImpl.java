@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lihebin.market.websocket.service.RobotService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,12 @@ import javax.annotation.Resource;
 /**
  * Created by lihebin on 2020/5/30.
  */
-@Service
+//@Service
 @Slf4j
 public class RobotServiceImpl implements RobotService {
 
-    @Resource
-    private RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplateEntity;
 
     /**
      * api地址
@@ -36,7 +37,7 @@ public class RobotServiceImpl implements RobotService {
 
     @Override
     public String sendMessage(String userId, String text) {
-        ResponseEntity<JSONObject> resp = restTemplate.exchange(apiUrl, HttpMethod.POST,
+        ResponseEntity<JSONObject> resp = restTemplateEntity.exchange(apiUrl, HttpMethod.POST,
                 buildHttpEntity(userId, text), JSONObject.class);
         return parseData(resp);
     }

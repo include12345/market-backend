@@ -36,55 +36,55 @@
         </dependency>
 
     </dependencies>
-    <build>
-        <finalName>market-websocket-service</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>utf-8</encoding>
-                </configuration>
-            </plugin>
-            <!-- avro-maven-plugin -->
+    <!--<build>-->
+        <!--<finalName>market-websocket-service</finalName>-->
+        <!--<plugins>-->
             <!--<plugin>-->
-            <!--<groupId>org.apache.avro</groupId>-->
-            <!--<artifactId>avro-maven-plugin</artifactId>-->
-            <!--<version>1.8.2</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<phase>generate-sources</phase>-->
-            <!--<goals>-->
-            <!--<goal>schema</goal>-->
-            <!--</goals>-->
-            <!--<configuration>-->
-            <!--<sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>-->
-            <!--<outputDirectory>${project.basedir}/src/main/java</outputDirectory>-->
-            <!--</configuration>-->
-            <!--</execution>-->
-            <!--</executions>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                    <!--<encoding>utf-8</encoding>-->
+                <!--</configuration>-->
             <!--</plugin>-->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.lihebin.market.Application</mainClass>
-                </configuration>
+            <!--&lt;!&ndash; avro-maven-plugin &ndash;&gt;-->
+            <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
+            <!--&lt;!&ndash;<groupId>org.apache.avro</groupId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>avro-maven-plugin</artifactId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<version>1.8.2</version>&ndash;&gt;-->
+            <!--&lt;!&ndash;<executions>&ndash;&gt;-->
+            <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+            <!--&lt;!&ndash;<phase>generate-sources</phase>&ndash;&gt;-->
+            <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+            <!--&lt;!&ndash;<goal>schema</goal>&ndash;&gt;-->
+            <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+            <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
+            <!--&lt;!&ndash;<sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>&ndash;&gt;-->
+            <!--&lt;!&ndash;<outputDirectory>${project.basedir}/src/main/java</outputDirectory>&ndash;&gt;-->
+            <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
+            <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+            <!--&lt;!&ndash;</executions>&ndash;&gt;-->
+            <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<mainClass>com.lihebin.market.Application</mainClass>-->
+                <!--</configuration>-->
 
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <!--<configuration>-->
-                        <!--<classifier>exec</classifier>-->
-                        <!--</configuration>-->
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>repackage</goal>-->
+                        <!--</goals>-->
+                        <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<classifier>exec</classifier>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 
 </project>

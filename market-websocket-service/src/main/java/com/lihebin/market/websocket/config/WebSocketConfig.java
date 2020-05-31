@@ -1,7 +1,6 @@
 package com.lihebin.market.websocket.config;
 
 import com.lihebin.market.websocket.constant.StompConstant;
-import com.lihebin.market.websocket.interceptor.WebSocketInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

@@ -42,7 +42,28 @@ spring:
           max-file-size: 20MB
           max-request-size: 100MB
 url:
-    login:
-        username: root
-        password: include
-    picture: http://129.28.192.214:6010
+  login:
+    username: root
+    password: include
+  picture: http://129.28.192.214:6010
+
+server:
+  port: 8090
+
+#文件上传路径
+file:
+  uploadPath: images/
+#文件目录映射
+  directoryMapping: files/
+
+#restTemplate配置
+#总连接数
+restTemplate:
+  threadSize: 20
+#连接不够时的等待时间，单位ms
+  waitingTime: 500
+#连接超时时间，单位ms
+  connectTimeOut: 10000
+#读取超时时间，单位ms
+  readTimeOut: 10000
+

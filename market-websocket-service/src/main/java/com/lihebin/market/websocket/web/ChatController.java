@@ -42,10 +42,10 @@ public class ChatController {
                 || StringUtils.isEmpty(user.getUserId())) {
             throw new BackendException(CodeEnum.INVALID_PARAMETERS);
         }
-
-        if (StringUtils.isNotEmpty(message) && message.startsWith(RobotConstant.prefix)) {
-            messageService.sendMessageToRobot(StompConstant.SUB_CHAT_ROOM, message, user);
-        }
+//
+//        if (StringUtils.isNotEmpty(message) && message.startsWith(RobotConstant.prefix)) {
+//            messageService.sendMessageToRobot(StompConstant.SUB_CHAT_ROOM, message, user);
+//        }
 
         messageService.sendMessage(StompConstant.SUB_CHAT_ROOM,
                 new MessageVO(user,
@@ -80,6 +80,12 @@ public class ChatController {
         );
     }
 
+    /**
+     * 消息异常处理
+     *
+     * @param e
+     * @param user
+     */
     @MessageExceptionHandler(Exception.class)
     public void handleExceptions(Exception e, User user) {
         int code = CodeEnum.INTERNAL_SERVER_ERROR.getCode();
@@ -95,6 +101,13 @@ public class ChatController {
     }
 
 
+    /**
+     * 撤回消息
+     *
+     * @param revokeMessageRO
+     * @param user
+     */
+    @MessageMapping(StompConstant.PUB_CHAT_ROOM_REVOKE)
     public void revokeMessage(RevokeMessageRO revokeMessageRO, User user) {
         if (revokeMessageRO == null
                 || user == null

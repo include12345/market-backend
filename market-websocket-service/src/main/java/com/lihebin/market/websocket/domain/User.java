@@ -25,6 +25,9 @@ public class User implements Principal, Serializable {
      */
     private String username;
 
+
+    private String token;
+
     /**
      * 地址
      */

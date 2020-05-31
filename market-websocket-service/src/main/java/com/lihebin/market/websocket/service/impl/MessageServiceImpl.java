@@ -1,27 +1,20 @@
 package com.lihebin.market.websocket.service.impl;
 
-import com.lihebin.market.bean.Result;
-import com.lihebin.market.enums.Code;
 import com.lihebin.market.enums.CodeEnum;
 import com.lihebin.market.exception.BackendException;
 import com.lihebin.market.utils.ResultUtil;
-import com.lihebin.market.utils.SpringUtils;
 import com.lihebin.market.websocket.annotation.ChatRecord;
-import com.lihebin.market.websocket.cache.UserCache;
-import com.lihebin.market.websocket.constant.RobotConstant;
 import com.lihebin.market.websocket.constant.StompConstant;
 import com.lihebin.market.websocket.domain.MessageVO;
 import com.lihebin.market.websocket.domain.User;
-import com.lihebin.market.websocket.enums.MessageTypeEnum;
 import com.lihebin.market.websocket.service.MessageService;
-import com.lihebin.market.websocket.service.RobotService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 
 /**
  * Created by lihebin on 2020/5/30.
@@ -30,11 +23,11 @@ import javax.annotation.Resource;
 @Slf4j
 public class MessageServiceImpl implements MessageService {
 
-    @Resource
+    @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
-
-    @Resource
-    private RobotService robotService;
+//
+//    @Resource
+//    private RobotService robotService;
 
     @ChatRecord
     @Override
@@ -66,19 +59,19 @@ public class MessageServiceImpl implements MessageService {
                 ResultUtil.error(code, message));
     }
 
-    @Override
-    public void sendMessageToRobot(String subAddress, String message, User user) {
-        log.info("user: {} -> 发送消息到机器人 -> {}", user, message);
-        String robotMessage = robotService.sendMessage(user.getUserId(), message.replaceFirst(RobotConstant.prefix,
-                ""));
-        log.info("机器人响应结果 -> {}", robotMessage);
-        sendRobotMessage(subAddress, robotMessage);
-    }
-
-    @Override
-    public void sendRobotMessage(String subAddress, String message) {
-        SpringUtils.getBean(this.getClass()).sendMessage(subAddress, new MessageVO(UserCache.getUser(RobotConstant.key),
-                message, MessageTypeEnum.ROBOT));
-    }
+//    @Override
+//    public void sendMessageToRobot(String subAddress, String message, User user) {
+//        log.info("user: {} -> 发送消息到机器人 -> {}", user, message);
+//        String robotMessage = robotService.sendMessage(user.getUserId(), message.replaceFirst(RobotConstant.prefix,
+//                ""));
+//        log.info("机器人响应结果 -> {}", robotMessage);
+//        sendRobotMessage(subAddress, robotMessage);
+//    }
+//
+//    @Override
+//    public void sendRobotMessage(String subAddress, String message) {
+//        SpringUtils.getBean(this.getClass()).sendMessage(subAddress, new MessageVO(UserCache.getUser(RobotConstant.key),
+//                message, MessageTypeEnum.ROBOT));
+//    }
 
 }

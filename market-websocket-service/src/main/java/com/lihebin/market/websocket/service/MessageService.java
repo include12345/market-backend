@@ -34,20 +34,20 @@ public interface MessageService {
     void sendErrorMessage(int code, String message, User user);
 
 
-    /**
-     * 发送消息到机器人
-     *
-     * @param subAddress
-     * @param message
-     * @param user
-     */
-    void sendMessageToRobot(String subAddress, String message, User user);
-
-    /**
-     * 发送机器人消息
-     *
-     * @param subAddress
-     * @param message
-     */
-    void sendRobotMessage(String subAddress,String message);
+//    /**
+//     * 发送消息到机器人
+//     *
+//     * @param subAddress
+//     * @param message
+//     * @param user
+//     */
+//    void sendMessageToRobot(String subAddress, String message, User user);
+//
+//    /**
+//     * 发送机器人消息
+//     *
+//     * @param subAddress
+//     * @param message
+//     */
+//    void sendRobotMessage(String subAddress,String message);
 }
