@@ -47,12 +47,12 @@ public class ChatController {
 //            messageService.sendMessageToRobot(StompConstant.SUB_CHAT_ROOM, message, user);
 //        }
 
-        messageService.sendMessage(StompConstant.SUB_CHAT_ROOM,
-                new MessageVO(user,
-                        message,
-                        messageRO.getImage(),
-                        MessageTypeEnum.USER)
-        );
+//        messageService.sendMessage(StompConstant.SUB_CHAT_ROOM,
+//                new MessageVO(user,
+//                        message,
+//                        messageRO.getImage(),
+//                        MessageTypeEnum.SMS)
+//        );
     }
 
 
@@ -71,13 +71,13 @@ public class ChatController {
             throw new BackendException(CodeEnum.INVALID_PARAMETERS);
         }
 
-        messageService.sendMessageToUser(messageRO.getReceivers(),
-                new MessageVO(user,
-                        messageRO.getMessage(),
-                        messageRO.getImage(),
-                        MessageTypeEnum.USER,
-                        messageRO.getReceivers())
-        );
+//        messageService.sendMessageToUser(messageRO.getReceivers(),
+//                new MessageVO(user,
+//                        messageRO.getMessage(),
+//                        messageRO.getImage(),
+//                        MessageTypeEnum.SMS,
+//                        messageRO.getReceivers())
+//        );
     }
 
     /**
@@ -115,17 +115,17 @@ public class ChatController {
             throw new BackendException(CodeEnum.INVALID_PARAMETERS);
         }
         CheckUtil.checkMessageId(revokeMessageRO.getMessageId(), user.getUserId());
-        RevokeMsgVO revokeMsgVO = new RevokeMsgVO();
-        revokeMsgVO.setRevokeMessageId(revokeMessageRO.getMessageId());
-        revokeMsgVO.setUser(user);
-        revokeMsgVO.setType(MessageTypeEnum.REVOKE);
-        if ( ArrayUtils.isNotEmpty(revokeMessageRO.getReceivers())) {
-            // 将消息发送到指定用户
-            messageService.sendMessageToUser(revokeMessageRO.getReceivers(), revokeMsgVO);
-            return;
-        }
+//        RevokeMsgVO revokeMsgVO = new RevokeMsgVO();
+//        revokeMsgVO.setRevokeMessageId(revokeMessageRO.getMessageId());
+//        revokeMsgVO.setUser(user);
+//        revokeMsgVO.setType(MessageTypeEnum.SMS);
+//        if ( ArrayUtils.isNotEmpty(revokeMessageRO.getReceivers())) {
+//            // 将消息发送到指定用户
+//            messageService.sendMessageToUser(revokeMessageRO.getReceivers(), revokeMsgVO);
+//            return;
+//        }
         // 将消息发送到所有用户
-        messageService.sendMessage(StompConstant.SUB_CHAT_ROOM, revokeMsgVO);
+//        messageService.sendMessage(StompConstant.SUB_CHAT_ROOM, revokeMsgVO);
     }
 
 

@@ -1,6 +1,5 @@
 package com.lihebin.market.model;
 
-
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -11,13 +10,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by lihebin on 2019/4/16.
+ * Created by lihebin on 2020/6/18.
  */
 @Entity
-@Table(name = "merchant_user")
+@Table(name = "user_friend")
 @EntityListeners(AuditingEntityListener.class)
 @Data
-public class MerchantUser implements Serializable {
+public class UserFriend implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,18 +41,8 @@ public class MerchantUser implements Serializable {
     private String username;
 
     @Column
-    private String password;
+    private String friendname;
 
     @Column
-    private String imageUrl;
-
-    @Column
-    private String nickname;
-
-    @Column
-    private Long merchant_id;
-
-    @Column
-    private Integer type;
-
+    private String remark;
 }

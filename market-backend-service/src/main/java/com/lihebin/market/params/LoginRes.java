@@ -10,6 +10,8 @@ public class LoginRes {
 
     private String token;
 
+    private String username;
+
     private Integer type;
 
     public Long getMerchantId() {
@@ -34,5 +36,13 @@ public class LoginRes {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

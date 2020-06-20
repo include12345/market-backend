@@ -23,7 +23,7 @@ public class MessageVO implements Serializable{
      */
     @Getter
     @Setter
-    private User user;
+    private String username;
 
     /**
      * 消息
@@ -62,29 +62,25 @@ public class MessageVO implements Serializable{
      */
     private String[] receiver;
 
-    public MessageVO(User user, String message, String image, MessageTypeEnum type, String[] receiver) {
-        this.user = user;
+    public MessageVO(String username, String message, String image, MessageTypeEnum type, String[] receiver) {
+        this.username = username;
         this.message = message;
         this.image = image;
         this.type = type;
         this.receiver = receiver;
     }
 
-    public MessageVO(User user, String message, String image, MessageTypeEnum type) {
-        this.user = user;
+    public MessageVO(String username, String message, String image, MessageTypeEnum type) {
+        this.username = username;
         this.message = message;
         this.image = image;
         this.type = type;
     }
 
-    public MessageVO(User user, String message, MessageTypeEnum type) {
-        this.user = user;
+    public MessageVO(String username, String message, MessageTypeEnum type) {
+        this.username = username;
         this.message = message;
         this.type = type;
-    }
-
-    public String getMessageId() {
-        return String.format("%s:%d", user.getUserId(), timestamp);
     }
 
     public String getSendTime() {

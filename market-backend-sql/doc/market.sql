@@ -24,8 +24,11 @@ CREATE TABLE IF NOT EXISTS `market`.`merchant_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(36) NOT NULL COMMENT '商户用户名',
   `password` VARCHAR(64) NOT NULL COMMENT '商户登录密码',
+  `imageUrl` text COLLATE utf8mb4_bin,
+  `nickname` VARCHAR(64) NOT NULL COMMENT '昵称',
   `merchant_id` bigint(20)  NOT NULL COMMENT '商户id',
   `type` int(1) NOT NULL DEFAULT '1' COMMENT '用户类型 1:管理员 2:收银员',
+  `address` VARCHAR(128) NOT NULL COMMENT '地址',
   `ctime` timestamp NULL COMMENT '开始时间',
   `mtime` timestamp NULL COMMENT '最近一次更新时间',
   `deleted` TINYINT(1) DEFAULT '0' COMMENT '',
@@ -36,7 +39,20 @@ CREATE TABLE IF NOT EXISTS `market`.`merchant_user` (
   ENGINE = InnoDB
   COMMENT = '商户账户表';
 
-
+CREATE TABLE IF NOT EXISTS `market`.`user_friend` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(36) NOT NULL COMMENT '用户名',
+  `friendname` VARCHAR(36) NOT NULL COMMENT '好友用户名',
+  `remark` varchar(128) null comment '备注',
+  `ctime` timestamp NULL COMMENT '开始时间',
+  `mtime` timestamp NULL COMMENT '最近一次更新时间',
+  `deleted` TINYINT(1) DEFAULT '0' COMMENT '',
+  `version` BIGINT(20) UNSIGNED NULL COMMENT '',
+  PRIMARY KEY (`id`) COMMENT '',
+  INDEX `username` (`username`),
+  unique index `username_friendname` (`username`, `friendname`))
+  ENGINE = InnoDB
+  COMMENT = '用户好友表';
 
 
 
