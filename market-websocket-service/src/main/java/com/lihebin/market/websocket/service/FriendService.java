@@ -1,12 +1,14 @@
 package com.lihebin.market.websocket.service;
 
 import com.lihebin.market.model.UserFriend;
+import com.lihebin.market.model.UserFriendReq;
 import com.lihebin.market.websocket.domain.Contacts;
 import com.lihebin.market.websocket.domain.FriendAdd;
 import com.lihebin.market.websocket.domain.FriendUpdate;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lihebin on 2020/6/18.
@@ -55,5 +57,19 @@ public interface FriendService {
     boolean updateFriend(String token, FriendUpdate friendUpdate);
 
 
+    /**
+     * 查找用户
+     *
+     * @param friendName
+     * @return
+     */
+    List<Map<String, Object>> searchFriend(String friendName);
 
+    /**
+     * 列出好友列表
+     *
+     * @param token
+     * @return
+     */
+    List<UserFriendReq> listFriendReqByToken(String token);
 }

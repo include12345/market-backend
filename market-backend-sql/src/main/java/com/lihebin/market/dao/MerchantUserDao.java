@@ -2,7 +2,11 @@ package com.lihebin.market.dao;
 
 import com.lihebin.market.model.MerchantUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lihebin on 2019/4/16.
@@ -17,6 +21,10 @@ public interface MerchantUserDao extends JpaRepository<MerchantUser, Long> {
      * @return
      */
     MerchantUser findMerchantUserByUsername(String username);
+
+
+    @Query(value = "select username, imageUrl, nickname from merchant_user where username like ?1", nativeQuery = true)
+    List<Map<String, Object>> listUserByUsernameLike(String username);
 
 
 }

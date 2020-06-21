@@ -39,7 +39,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         //注册STOMP的endpoint，并指定使用SockJS协议
-        registry.addEndpoint(StompConstant.STOMP_ENDPOINT).withSockJS();
+        registry.addEndpoint(StompConstant.STOMP_ENDPOINT).setAllowedOrigins("*").withSockJS();
     }
 
 

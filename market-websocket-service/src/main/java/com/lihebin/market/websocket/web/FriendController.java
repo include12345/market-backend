@@ -23,6 +23,12 @@ public class FriendController {
     @Autowired
     private FriendService friendService;
 
+
+    @RequestMapping(value = "/searchFriend", method = RequestMethod.GET)
+    public Result searchFriend(@RequestParam(value = "friendName", required = true) String friendName) {
+        return ResultUtil.success(friendService.searchFriend(friendName));
+    }
+
     @RequestMapping(value = "/listFriends", method = RequestMethod.GET)
     public Result listFriends(@RequestHeader("token") String token) {
         return ResultUtil.success(friendService.listFriendsByToken(token));
@@ -39,6 +45,11 @@ public class FriendController {
     @RequestMapping(value = "/addFriendRequest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public Result addFriendRequest(@Valid @RequestHeader("token") String token, @RequestBody FriendAdd friendAdd) {
         return ResultUtil.success(friendService.addFriendRequest(token, friendAdd));
+    }
+
+    @RequestMapping(value = "/listFriendReq", method = RequestMethod.GET)
+    public Result listFriendReq(@RequestHeader("token") String token) {
+        return ResultUtil.success(friendService.listFriendReqByToken(token));
     }
 
     @RequestMapping(value = "/addFriend", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

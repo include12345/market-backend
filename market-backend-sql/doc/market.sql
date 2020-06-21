@@ -55,6 +55,20 @@ CREATE TABLE IF NOT EXISTS `market`.`user_friend` (
   COMMENT = '用户好友表';
 
 
+CREATE TABLE IF NOT EXISTS `market`.`user_friend_req` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(36) NOT NULL COMMENT '用户名',
+  `friendname` VARCHAR(36) NOT NULL COMMENT '好友用户名',
+  `remark` varchar(128) null comment '备注',
+  `ctime` timestamp NULL COMMENT '开始时间',
+  `mtime` timestamp NULL COMMENT '最近一次更新时间',
+  PRIMARY KEY (`id`) COMMENT '',
+  INDEX `username` (`username`),
+  unique index `username_friendname` (`username`, `friendname`))
+  ENGINE = InnoDB
+  COMMENT = '用户好友申请表';
+
+
 
 -- -----------------------------------------------------
 -- Table `market`.`merchant_consumer`

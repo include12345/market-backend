@@ -6,9 +6,11 @@ import com.lihebin.market.cache.RedisDao;
 import com.lihebin.market.cache.UserCache;
 import com.lihebin.market.dao.MerchantUserDao;
 import com.lihebin.market.dao.UserFriendDao;
+import com.lihebin.market.dao.UserFriendReqDao;
 import com.lihebin.market.exception.BackendException;
 import com.lihebin.market.model.MerchantUser;
 import com.lihebin.market.model.UserFriend;
+import com.lihebin.market.model.UserFriendReq;
 import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.websocket.constant.StompConstant;
 import com.lihebin.market.websocket.domain.Contacts;
@@ -42,6 +44,10 @@ public class FriendServiceImpl implements FriendService{
 
     @Autowired
     private UserFriendDao userFriendDao;
+
+
+    @Autowired
+    private UserFriendReqDao userFriendReqDao;
 
     @Autowired
     private MerchantUserDao merchantUserDao;
@@ -90,7 +96,8 @@ public class FriendServiceImpl implements FriendService{
 
     @Override
     public boolean addFriendRequest(String token, FriendAdd friendAdd) {
-        String username = userCache.getUsername(token);
+//        String username = userCache.getUsername(token);
+        String username = "test";
         UserFriend userFriend = userFriendDao.findByUsernameAndFriendname(username, friendAdd.getFriendName());
         if (userFriend != null) {
             return false;
@@ -99,16 +106,16 @@ public class FriendServiceImpl implements FriendService{
         if (merchantUser == null) {
             return false;
         }
-        String uuid = UUID.randomUUID().toString();
-        String value = String.format("%s|||%s", username, uuid);
-        String key = String.format("%s-%s", username, friendAdd.getFriendName());
-        if (redisDao.getValue(key) != null) {
-            redisDao.removeValue(key);
+        UserFriendReq userFriendReq = userFriendReqDao.findByUsernameAndFriendname(friendAdd.getFriendName(), username);
+        if (userFriendReq == null) {
+            userFriendReq = new UserFriendReq();
+            userFriendReq.setUsername(friendAdd.getFriendName());
+            userFriendReq.setFriendname(username);
+            userFriendReqDao.save(userFriendReq);
         }
-        redisDao.cacheValue(key, value, 30, TimeUnit.DAYS);
         simpMessagingTemplate.convertAndSendToUser(friendAdd.getFriendName(), StompConstant.SUB_USER,
                 ResultUtil.success(new MessageVO(username,
-                        uuid,
+                        "好友添加请求",
                         MessageTypeEnum.ADD_FRIEND)));
         return true;
     }
@@ -118,17 +125,8 @@ public class FriendServiceImpl implements FriendService{
     public UserFriend addFriend(String token, FriendAdd friendAdd) {
         UserFriend userFriendResult = new UserFriend();
         String username = userCache.getUsername(token);
-        if (friendAdd.getKey() == null) {
-            throw new BackendException(Code.CODE_NOT_EXIST, "添加好友失败");
-        }
-        String key = String.format("%s-%s", friendAdd.getFriendName(), username);
-        String value = redisDao.getValue(key);
-        if (value == null) {
-            throw new BackendException(Code.CODE_NOT_EXIST, "添加好友失败");
-        }
-        String[] caches = value.split("|||");
-        if (!friendAdd.getFriendName().equals(caches[0])
-                || !friendAdd.getKey().equals(caches[1])) {
+        UserFriendReq userFriendReq = userFriendReqDao.findByUsernameAndFriendname(username, friendAdd.getFriendName());
+        if (userFriendReq == null) {
             throw new BackendException(Code.CODE_NOT_EXIST, "添加好友失败");
         }
 
@@ -155,7 +153,7 @@ public class FriendServiceImpl implements FriendService{
                             JSON.toJSONString(friendUserFriendAdd),
                             MessageTypeEnum.DEAL_ADD_FRIEND_REQ)));
         }
-        redisDao.removeValue(key);
+        userFriendReqDao.deleteById(userFriendReq.getId());
         return userFriendResult;
     }
 
@@ -171,5 +169,18 @@ public class FriendServiceImpl implements FriendService{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Map<String, Object>> searchFriend(String friendName) {
+        friendName = String.format("%s%%", friendName);
+        return merchantUserDao.listUserByUsernameLike(friendName);
+    }
+
+    @Override
+    public List<UserFriendReq> listFriendReqByToken(String token) {
+//        String username = userCache.getUsername(token);
+        String username = "test";
+        return userFriendReqDao.findAllByUsername(username);
     }
 }

@@ -36,7 +36,7 @@ public class WebSocketInterceptor implements ChannelInterceptor {
         StompCommand stompCommand = accessor.getCommand();
         switch (stompCommand) {
             case CONNECT:
-                accessor.setUser(getUser(message));
+//                accessor.setUser(getUser(message));
                 break;
             case ABORT:
                 break;
