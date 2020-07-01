@@ -12,6 +12,7 @@ import com.lihebin.market.model.MerchantUser;
 import com.lihebin.market.model.UserFriend;
 import com.lihebin.market.model.UserFriendReq;
 import com.lihebin.market.utils.ResultUtil;
+import com.lihebin.market.utils.StringUtil;
 import com.lihebin.market.websocket.constant.StompConstant;
 import com.lihebin.market.websocket.domain.Contacts;
 import com.lihebin.market.websocket.domain.FriendAdd;
@@ -20,6 +21,7 @@ import com.lihebin.market.websocket.domain.MessageVO;
 import com.lihebin.market.websocket.enums.MessageTypeEnum;
 import com.lihebin.market.websocket.service.FriendService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -77,7 +79,8 @@ public class FriendServiceImpl implements FriendService{
     @Transactional
     @Override
     public boolean deleteFriend(String token, String friendName) {
-        String username = userCache.getUsername(token);
+//        String username = userCache.getUsername(token);
+        String username = "test";
         UserFriend userFriend = userFriendDao.findByUsernameAndFriendname(username, friendName);
         if (userFriend == null) {
             return false;
@@ -124,20 +127,22 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public UserFriend addFriend(String token, FriendAdd friendAdd) {
         UserFriend userFriendResult = new UserFriend();
-        String username = userCache.getUsername(token);
+//        String username = userCache.getUsername(token);
+        String username = "test";
+
         UserFriendReq userFriendReq = userFriendReqDao.findByUsernameAndFriendname(username, friendAdd.getFriendName());
         if (userFriendReq == null) {
-            throw new BackendException(Code.CODE_NOT_EXIST, "添加好友失败");
+            throw new BackendException(Code.CODE_NOT_EXIST, "操作好友失败");
         }
 
         if (friendAdd.getIsAgree() == null) {
-            throw new BackendException(Code.CODE_NOT_EXIST, "添加好友失败");
+            throw new BackendException(Code.CODE_NOT_EXIST, "操作好友失败");
         }
 
         if (friendAdd.getIsAgree()) {
             UserFriend userFriend = userFriendDao.findByUsernameAndFriendname(username, friendAdd.getFriendName());
             if (userFriend != null) {
-                throw new BackendException(Code.CODE_NOT_EXIST, "添加好友失败");
+                throw new BackendException(Code.CODE_NOT_EXIST, "操作好友失败");
             }
             UserFriend userFriendAdd = new UserFriend();
             userFriendAdd.setUsername(username);

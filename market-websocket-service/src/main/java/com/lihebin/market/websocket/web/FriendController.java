@@ -52,8 +52,8 @@ public class FriendController {
         return ResultUtil.success(friendService.listFriendReqByToken(token));
     }
 
-    @RequestMapping(value = "/addFriend", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result addFriend(@Valid @RequestHeader("token") String token, @RequestBody FriendAdd friendAdd) {
+    @RequestMapping(value = "/dealFriendReq", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Result dealFriendReq(@Valid @RequestHeader("token") String token, @RequestBody FriendAdd friendAdd) {
         return ResultUtil.success(friendService.addFriend(token, friendAdd));
     }
 
