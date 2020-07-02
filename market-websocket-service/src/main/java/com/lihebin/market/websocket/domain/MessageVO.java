@@ -18,12 +18,23 @@ public class MessageVO implements Serializable{
 
     private Long timestamp = System.currentTimeMillis();
 
+
+    /**
+     * 消息id
+     */
+    @Getter
+    @Setter
+    private String messageId;
     /**
      * 用户
      */
     @Getter
     @Setter
-    private String username;
+    private String from;
+
+    @Getter
+    @Setter
+    private String to;
 
     /**
      * 消息
@@ -48,42 +59,35 @@ public class MessageVO implements Serializable{
     private MessageTypeEnum type;
 
     /**
-     * 消息id
+     * 创建时间
      */
-    private String messageId;
-
-    /**
-     * 发送时间
-     */
-    private String sendTime;
+    @Getter
+    @Setter
+    private long ctime;
 
     /**
      * 接收者
      */
     private String[] receiver;
 
-    public MessageVO(String username, String message, String image, MessageTypeEnum type, String[] receiver) {
-        this.username = username;
+    public MessageVO(String from, String message, String image, MessageTypeEnum type, String[] receiver) {
+        this.from = from;
         this.message = message;
         this.image = image;
         this.type = type;
         this.receiver = receiver;
     }
 
-    public MessageVO(String username, String message, String image, MessageTypeEnum type) {
-        this.username = username;
+    public MessageVO(String from, String message, String image, MessageTypeEnum type) {
+        this.from = from;
         this.message = message;
         this.image = image;
         this.type = type;
     }
 
-    public MessageVO(String username, String message, MessageTypeEnum type) {
-        this.username = username;
+    public MessageVO(String from, String message, MessageTypeEnum type) {
+        this.from = from;
         this.message = message;
         this.type = type;
-    }
-
-    public String getSendTime() {
-        return DateTimeUtil.getDate(timestamp, DateTimeUtil.SEND_TIME_FORMAT);
     }
 }

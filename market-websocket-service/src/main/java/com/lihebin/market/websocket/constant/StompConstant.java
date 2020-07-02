@@ -28,6 +28,12 @@ public interface StompConstant {
 
 
     /**
+     * 单用户消息订阅地址
+     */
+    String SUB_USER_MESSAGE = "/chat/message";
+
+
+    /**
      * 好友请求消息订阅地址
      */
     String SUB_FRIEND_ADD_REQ = "/friendAddReq";

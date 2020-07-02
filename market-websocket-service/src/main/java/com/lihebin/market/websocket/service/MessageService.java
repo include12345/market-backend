@@ -9,45 +9,45 @@ import com.lihebin.market.websocket.domain.User;
  */
 public interface MessageService {
 
-    /**
-     * 发送消息
-     *
-     * @param subAddress
-     * @param messageVO
-     */
-    void sendMessage(String subAddress, MessageVO messageVO);
-
-    /**
-     * 发送消息到指定用户
-     *
-     * @param receivers
-     * @param messageVO
-     */
-    void sendMessageToUser(String[] receivers, MessageVO messageVO);
-
-    /**
-     * 发送错误消息
-     *
-     * @param code
-     * @param user
-     */
-    void sendErrorMessage(int code, String message, User user);
-
-
 //    /**
-//     * 发送消息到机器人
+//     * 发送消息
 //     *
 //     * @param subAddress
-//     * @param message
-//     * @param user
+//     * @param messageVO
 //     */
-//    void sendMessageToRobot(String subAddress, String message, User user);
+//    void sendMessage(String subAddress, MessageVO messageVO);
 //
 //    /**
-//     * 发送机器人消息
+//     * 发送消息到指定用户
 //     *
-//     * @param subAddress
-//     * @param message
+//     * @param receivers
+//     * @param messageVO
 //     */
-//    void sendRobotMessage(String subAddress,String message);
+//    void sendMessageToUser(String[] receivers, MessageVO messageVO);
+//
+//    /**
+//     * 发送错误消息
+//     *
+//     * @param code
+//     * @param user
+//     */
+//    void sendErrorMessage(int code, String message, User user);
+//
+//
+////    /**
+////     * 发送消息到机器人
+////     *
+////     * @param subAddress
+////     * @param message
+////     * @param user
+////     */
+////    void sendMessageToRobot(String subAddress, String message, User user);
+////
+////    /**
+////     * 发送机器人消息
+////     *
+////     * @param subAddress
+////     * @param message
+////     */
+////    void sendRobotMessage(String subAddress,String message);
 }
