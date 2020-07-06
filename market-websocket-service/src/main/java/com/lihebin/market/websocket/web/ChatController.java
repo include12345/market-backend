@@ -1,8 +1,11 @@
 package com.lihebin.market.websocket.web;
 
+import com.alibaba.fastjson.JSON;
+import com.lihebin.market.bean.Result;
 import com.lihebin.market.enums.Code;
 import com.lihebin.market.enums.CodeEnum;
 import com.lihebin.market.exception.BackendException;
+import com.lihebin.market.model.UserFriendReq;
 import com.lihebin.market.utils.CheckUtil;
 import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.websocket.constant.RobotConstant;
@@ -10,6 +13,7 @@ import com.lihebin.market.websocket.constant.StompConstant;
 import com.lihebin.market.websocket.domain.*;
 import com.lihebin.market.websocket.enums.MessageTypeEnum;
 import com.lihebin.market.websocket.service.ChatRecordService;
+import com.lihebin.market.websocket.service.FriendService;
 import com.lihebin.market.websocket.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
@@ -18,7 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by lihebin on 2020/5/30.
@@ -32,6 +40,9 @@ public class ChatController {
 
     @Autowired
     private ChatRecordService chatRecordService;
+
+    @Autowired
+    private FriendService friendService;
 //
 //    @Autowired
 //    private MessageService messageService;
@@ -74,14 +85,24 @@ public class ChatController {
     public void sendToUser(MessageVO messageVO) {
         if (MessageTypeEnum.HAS_READ.equals(messageVO.getType())) {
             chatRecordService.updateChatRecordReadedStatus(messageVO.getTo(),
-                    messageVO.getFrom(),
-                    messageVO.getMessageId());
+                    messageVO.getFrom());
             return;
         }
         messageVO.setType(MessageTypeEnum.SMS);
         chatRecordService.createChatRecord(messageVO);
         template.convertAndSendToUser(messageVO.getTo(), StompConstant.SUB_USER,
                 ResultUtil.success(messageVO));
+    }
+
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public Result listChatRecordPaging() {
+        List<UserFriendReq> userFriendReqList = friendService.listFriendReqByToken("test");
+        template.convertAndSendToUser("test", StompConstant.SUB_USER,
+                new MessageVO("test",
+                        JSON.toJSONString(userFriendReqList.get(0)),
+                        MessageTypeEnum.ADD_FRIEND));
+        return ResultUtil.success();
     }
 
 //    /**

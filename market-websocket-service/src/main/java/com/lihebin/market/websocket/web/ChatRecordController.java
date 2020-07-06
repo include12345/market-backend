@@ -5,10 +5,7 @@ import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.websocket.service.ChatRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by lihebin on 2020/6/30.
@@ -33,4 +30,10 @@ public class ChatRecordController {
     ) {
         return ResultUtil.success(chatRecordService.listChatRecordPage(from, to, ctimeStart, ctimeEnd, pageNo, pageSize));
     }
+
+    @RequestMapping(value = "/listUnReadMessages", method = RequestMethod.GET)
+    public Result listUnReadMessages(@RequestHeader("token") String token) {
+        return ResultUtil.success(chatRecordService.listUnReadMessages(token));
+    }
+
 }

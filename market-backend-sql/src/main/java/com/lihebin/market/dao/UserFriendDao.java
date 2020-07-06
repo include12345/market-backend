@@ -20,7 +20,7 @@ public interface UserFriendDao extends JpaRepository<UserFriend, Long> {
 
     @Query(value = "select f.id, f.remark, f.ctime, f.mtime, f.friendname, u.imageUrl, u.nickname " +
             "from user_friend f left join merchant_user u on f.friendname = u.username " +
-            "where f.username = :username", nativeQuery = true)
+            "where f.username = :username order by f.friendname", nativeQuery = true)
     List<Map<String, Object>> listFriendsByUsername(@Param("username") String username);
 
 

@@ -58,22 +58,22 @@ public class FriendServiceImpl implements FriendService{
     private SimpMessagingTemplate simpMessagingTemplate;
 
     @Override
-    public List<Contacts> listFriendsByToken(String token) {
+    public List<Map<String, Object>> listFriendsByToken(String token) {
 //        String username = userCache.getUsername(token);
 
-        List<Map<String, Object>> friendList = userFriendDao.listFriendsByUsername("test");
-        Map<String, List<Map<String, Object>>> friendsMap = friendList.stream()
-                .collect(Collectors.groupingBy((Map m) -> ((String) m.get("friendname")).substring(0, 1)));
-        List<Contacts> contactsList = new ArrayList<>();
-        friendsMap.forEach((tag, list) -> {
-            Contacts contacts = new Contacts();
-            contacts.setTag(tag);
-            contacts.setFriendsInfo(list);
-            contactsList.add(contacts);
-        });
-        return contactsList.stream()
-                .sorted(Comparator.comparing(Contacts::getTag))
-                .collect(Collectors.toList());
+        return userFriendDao.listFriendsByUsername("test");
+//        Map<String, List<Map<String, Object>>> friendsMap = friendList.stream()
+//                .collect(Collectors.groupingBy((Map m) -> ((String) m.get("friendname")).substring(0, 1)));
+//        List<Contacts> contactsList = new ArrayList<>();
+//        friendsMap.forEach((tag, list) -> {
+//            Contacts contacts = new Contacts();
+//            contacts.setTag(tag);
+//            contacts.setFriendsInfo(list);
+//            contactsList.add(contacts);
+//        });
+//        return contactsList.stream()
+//                .sorted(Comparator.comparing(Contacts::getTag))
+//                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -114,12 +114,12 @@ public class FriendServiceImpl implements FriendService{
             userFriendReq = new UserFriendReq();
             userFriendReq.setUsername(friendAdd.getFriendName());
             userFriendReq.setFriendname(username);
-            userFriendReqDao.save(userFriendReq);
+            userFriendReq = userFriendReqDao.save(userFriendReq);
         }
         simpMessagingTemplate.convertAndSendToUser(friendAdd.getFriendName(), StompConstant.SUB_USER,
-                ResultUtil.success(new MessageVO(username,
-                        "好友添加请求",
-                        MessageTypeEnum.ADD_FRIEND)));
+                new MessageVO(username,
+                        JSON.toJSONString(userFriendReq),
+                        MessageTypeEnum.ADD_FRIEND));
         return true;
     }
 

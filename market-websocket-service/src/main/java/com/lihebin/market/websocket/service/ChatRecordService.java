@@ -4,6 +4,9 @@ import com.lihebin.market.mongo.entity.ChatRecordEntity;
 import com.lihebin.market.websocket.domain.MessageVO;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by lihebin on 2020/7/2.
  */
@@ -31,9 +34,8 @@ public interface ChatRecordService {
      *
      * @param from
      * @param to
-     * @param messageId
      */
-    void updateChatRecordReadedStatus(String from, String to, String messageId);
+    void updateChatRecordReadedStatus(String from, String to);
 
 
     /**
@@ -43,4 +45,7 @@ public interface ChatRecordService {
      * @return
      */
     ChatRecordEntity createChatRecord(MessageVO messageVO);
+
+
+    Map<String, List<ChatRecordEntity>> listUnReadMessages(String token);
 }

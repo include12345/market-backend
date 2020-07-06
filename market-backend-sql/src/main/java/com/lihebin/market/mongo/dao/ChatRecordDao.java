@@ -45,7 +45,12 @@ public interface ChatRecordDao extends CrudRepository<ChatRecordEntity, String>,
 //    List<ChatRecordEntity> findByFromOrTo(String from, String to, long ctimeStart, long ctimeEnd);
 
 
-    ChatRecordEntity findChatRecordEntityByFromAndToAndMessageId(String from, String to, String messageId);
+
+    List<ChatRecordEntity> findAllByFromAndToAndStatus(String from, String to, long status);
+
+
+    List<ChatRecordEntity> findAllByToAndStatus(String to, long status);
+
 
 
     @Query("{\n" +

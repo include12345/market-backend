@@ -21,7 +21,7 @@ public interface FriendService {
      * @param token
      * @return
      */
-    List<Contacts> listFriendsByToken(String token);
+    List<Map<String, Object>> listFriendsByToken(String token);
 
     /**
      * 删除好友

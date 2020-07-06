@@ -41,7 +41,7 @@ public class MessageVO implements Serializable{
      */
     @Getter
     @Setter
-    private String message;
+    private String content;
 
 
     /**
@@ -70,24 +70,24 @@ public class MessageVO implements Serializable{
      */
     private String[] receiver;
 
-    public MessageVO(String from, String message, String image, MessageTypeEnum type, String[] receiver) {
+    public MessageVO(String from, String content, String image, MessageTypeEnum type, String[] receiver) {
         this.from = from;
-        this.message = message;
+        this.content = content;
         this.image = image;
         this.type = type;
         this.receiver = receiver;
     }
 
-    public MessageVO(String from, String message, String image, MessageTypeEnum type) {
+    public MessageVO(String from, String content, String image, MessageTypeEnum type) {
         this.from = from;
-        this.message = message;
+        this.content = content;
         this.image = image;
         this.type = type;
     }
 
-    public MessageVO(String from, String message, MessageTypeEnum type) {
+    public MessageVO(String from, String content, MessageTypeEnum type) {
         this.from = from;
-        this.message = message;
+        this.content = content;
         this.type = type;
     }
 }
