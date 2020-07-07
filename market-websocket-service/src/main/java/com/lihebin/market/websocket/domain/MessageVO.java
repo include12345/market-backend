@@ -12,63 +12,47 @@ import java.io.Serializable;
 /**
  * Created by lihebin on 2020/5/30.
  */
-@ToString
-@NoArgsConstructor
-public class MessageVO implements Serializable{
-
-    private Long timestamp = System.currentTimeMillis();
-
+public class MessageVO{
 
     /**
      * 消息id
      */
-    @Getter
-    @Setter
     private String messageId;
     /**
      * 用户
      */
-    @Getter
-    @Setter
     private String from;
 
-    @Getter
-    @Setter
     private String to;
 
     /**
      * 消息
      */
-    @Getter
-    @Setter
     private String content;
 
 
     /**
      * 图片
      */
-    @Getter
-    @Setter
     private String image;
 
     /**
      * 消息类型
      */
-    @Getter
-    @Setter
     private MessageTypeEnum type;
 
     /**
      * 创建时间
      */
-    @Getter
-    @Setter
     private long ctime;
 
     /**
      * 接收者
      */
     private String[] receiver;
+
+    public MessageVO() {
+    }
 
     public MessageVO(String from, String content, String image, MessageTypeEnum type, String[] receiver) {
         this.from = from;
@@ -89,5 +73,69 @@ public class MessageVO implements Serializable{
         this.from = from;
         this.content = content;
         this.type = type;
+    }
+
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public MessageTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(MessageTypeEnum type) {
+        this.type = type;
+    }
+
+    public long getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(long ctime) {
+        this.ctime = ctime;
+    }
+
+    public String[] getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String[] receiver) {
+        this.receiver = receiver;
     }
 }
