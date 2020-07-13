@@ -48,6 +48,7 @@ public class ChatRecordServiceImpl implements ChatRecordService{
         chatRecordEntity.setFrom(messageVO.getFrom());
         chatRecordEntity.setTo(messageVO.getTo());
         chatRecordEntity.setMessageId(messageVO.getMessageId());
+        chatRecordEntity.setContent(messageVO.getContent());
         chatRecordEntity.setCtime(messageVO.getCtime());
         chatRecordEntity.setStatus(ChatRecordEntity.UN_READ);
         chatRecordEntity = chatRecordDao.save(chatRecordEntity);
