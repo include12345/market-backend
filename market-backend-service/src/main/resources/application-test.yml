@@ -9,13 +9,13 @@ spring:
             maxWait: 60000
             minEvictableIdleTimeMillis: 300000
             minIdle: 5
-            password: 123456
+            password: Include_123456
             poolPreparedStatements: false
             testOnBorrow: false
             testOnReturn: false
             testWhileIdle: true
             timeBetweenEvictionRunsMillis: 60000
-            url: jdbc:mysql://localhost:3306/market?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=PRC&useSSL=false
+            url: jdbc:mysql://129.28.192.214:3306/market?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=PRC&useSSL=false
             username: root
             validationQuery: SELECT 'x'
     jpa:
@@ -28,9 +28,11 @@ spring:
         show-sql: true
     data:
         mongodb:
-          host: localhost
+          host: 129.28.192.214
           port: 27017
           database: chat
+          password: Include123456
+          username: include
     redis:
         database: 2
         host: 129.28.192.214
