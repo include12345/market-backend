@@ -59,9 +59,9 @@ public class FriendServiceImpl implements FriendService{
 
     @Override
     public List<Map<String, Object>> listFriendsByToken(String token) {
-//        String username = userCache.getUsername(token);
+        String username = userCache.getUsername(token);
 
-        return userFriendDao.listFriendsByUsername("test");
+        return userFriendDao.listFriendsByUsername(username);
 //        Map<String, List<Map<String, Object>>> friendsMap = friendList.stream()
 //                .collect(Collectors.groupingBy((Map m) -> ((String) m.get("friendname")).substring(0, 1)));
 //        List<Contacts> contactsList = new ArrayList<>();
@@ -79,8 +79,7 @@ public class FriendServiceImpl implements FriendService{
     @Transactional
     @Override
     public boolean deleteFriend(String token, String friendName) {
-//        String username = userCache.getUsername(token);
-        String username = "test";
+        String username = userCache.getUsername(token);
         UserFriend userFriend = userFriendDao.findByUsernameAndFriendname(username, friendName);
         if (userFriend == null) {
             return false;
@@ -99,8 +98,8 @@ public class FriendServiceImpl implements FriendService{
 
     @Override
     public boolean addFriendRequest(String token, FriendAdd friendAdd) {
-//        String username = userCache.getUsername(token);
-        String username = "test";
+        String username = userCache.getUsername(token);
+//        String username = "test";
         UserFriend userFriend = userFriendDao.findByUsernameAndFriendname(username, friendAdd.getFriendName());
         if (userFriend != null) {
             return false;
@@ -127,8 +126,8 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public UserFriend addFriend(String token, FriendAdd friendAdd) {
         UserFriend userFriendResult = new UserFriend();
-//        String username = userCache.getUsername(token);
-        String username = "test";
+        String username = userCache.getUsername(token);
+//        String username = "test";
 
         UserFriendReq userFriendReq = userFriendReqDao.findByUsernameAndFriendname(username, friendAdd.getFriendName());
         if (userFriendReq == null) {
@@ -177,15 +176,15 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
-    public List<Map<String, Object>> searchFriend(String friendName) {
+    public List<Map<String, Object>> searchFriend(String token, String friendName) {
+        String username = userCache.getUsername(token);
         friendName = String.format("%s%%", friendName);
-        return merchantUserDao.listUserByUsernameLike(friendName);
+        return merchantUserDao.listUserByUsernameLikeAndNoOwn(username, friendName);
     }
 
     @Override
     public List<UserFriendReq> listFriendReqByToken(String token) {
-//        String username = userCache.getUsername(token);
-        String username = "test";
+        String username = userCache.getUsername(token);
         return userFriendReqDao.findAllByUsername(username);
     }
 }

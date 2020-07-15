@@ -63,7 +63,7 @@ public interface FriendService {
      * @param friendName
      * @return
      */
-    List<Map<String, Object>> searchFriend(String friendName);
+    List<Map<String, Object>> searchFriend(String token, String friendName);
 
     /**
      * 列出好友列表

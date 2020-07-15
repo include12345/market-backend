@@ -1,5 +1,6 @@
 package com.lihebin.market.websocket.service.impl;
 
+import com.lihebin.market.cache.UserCache;
 import com.lihebin.market.mongo.dao.ChatRecordDao;
 import com.lihebin.market.mongo.entity.ChatRecordEntity;
 import com.lihebin.market.websocket.domain.MessageVO;
@@ -24,6 +25,9 @@ public class ChatRecordServiceImpl implements ChatRecordService{
 
     @Autowired
     private ChatRecordDao chatRecordDao;
+
+    @Autowired
+    private UserCache userCache;
 
     @Override
     public Page<ChatRecordEntity> listChatRecordPage(String from, String to,
@@ -57,8 +61,7 @@ public class ChatRecordServiceImpl implements ChatRecordService{
 
     @Override
     public Map<String, List<ChatRecordEntity>> listUnReadMessages(String token) {
-        //        String username = userCache.getUsername(token);
-        String username = "test";
+        String username = userCache.getUsername(token);
         List<ChatRecordEntity> chatRecordEntityList = chatRecordDao.findAllByToAndStatus(username, ChatRecordEntity.UN_READ);
         Map<String, List<ChatRecordEntity>> chatRecordEntityListMap = chatRecordEntityList.stream().collect(Collectors.groupingBy(ChatRecordEntity::getFrom));
         chatRecordEntityListMap.forEach(

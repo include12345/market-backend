@@ -25,8 +25,8 @@ public class FriendController {
 
 
     @RequestMapping(value = "/searchFriend", method = RequestMethod.GET)
-    public Result searchFriend(@RequestParam(value = "friendName", required = true) String friendName) {
-        return ResultUtil.success(friendService.searchFriend(friendName));
+    public Result searchFriend(@RequestHeader("token") String token, @RequestParam(value = "friendName", required = true) String friendName) {
+        return ResultUtil.success(friendService.searchFriend(token, friendName));
     }
 
     @RequestMapping(value = "/listFriends", method = RequestMethod.GET)

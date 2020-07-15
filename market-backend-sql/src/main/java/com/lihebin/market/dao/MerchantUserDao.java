@@ -23,8 +23,8 @@ public interface MerchantUserDao extends JpaRepository<MerchantUser, Long> {
     MerchantUser findMerchantUserByUsername(String username);
 
 
-    @Query(value = "select username, imageUrl, nickname from merchant_user where username like ?1", nativeQuery = true)
-    List<Map<String, Object>> listUserByUsernameLike(String username);
+    @Query(value = "select username, imageUrl, nickname from merchant_user where username != ?1 and username like ?2", nativeQuery = true)
+    List<Map<String, Object>> listUserByUsernameLikeAndNoOwn(String username, String friendName);
 
 
 }
