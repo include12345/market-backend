@@ -116,9 +116,9 @@ public class FriendServiceImpl implements FriendService{
             userFriendReq = userFriendReqDao.save(userFriendReq);
         }
         simpMessagingTemplate.convertAndSendToUser(friendAdd.getFriendName(), StompConstant.SUB_USER,
-                new MessageVO(username,
+                ResultUtil.success(new MessageVO(username,
                         JSON.toJSONString(userFriendReq),
-                        MessageTypeEnum.ADD_FRIEND));
+                        MessageTypeEnum.ADD_FRIEND)));
         return true;
     }
 

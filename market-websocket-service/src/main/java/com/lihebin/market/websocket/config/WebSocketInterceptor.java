@@ -41,6 +41,7 @@ public class WebSocketInterceptor implements ChannelInterceptor {
             case ABORT:
                 break;
             case DISCONNECT:
+
                 break;
             default:
                 break;
