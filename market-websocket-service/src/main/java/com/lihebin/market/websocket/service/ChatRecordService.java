@@ -30,6 +30,19 @@ public interface ChatRecordService {
 
 
     /**
+     * 列出消息
+     *
+     * @param from
+     * @param to
+     * @param ctimeStart
+     * @param ctimeEnd
+     * @return
+     */
+    List<ChatRecordEntity> listChatRecords(String from, String to, long ctimeStart, long ctimeEnd);
+
+
+
+    /**
      * 修改消息状态
      *
      * @param from
@@ -48,4 +61,5 @@ public interface ChatRecordService {
 
 
     Map<String, List<ChatRecordEntity>> listUnReadMessages(String token);
+
 }

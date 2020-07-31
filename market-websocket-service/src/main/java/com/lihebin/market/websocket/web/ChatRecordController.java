@@ -31,6 +31,17 @@ public class ChatRecordController {
         return ResultUtil.success(chatRecordService.listChatRecordPage(from, to, ctimeStart, ctimeEnd, pageNo, pageSize));
     }
 
+
+    @RequestMapping(value = "/listChatRecords", method = RequestMethod.GET)
+    public Result listChatRecords(
+            @RequestParam(value = "from", required = false) String from,
+            @RequestParam(value = "to", required = false) String to,
+            @RequestParam(value = "ctimeStart", required = false) long ctimeStart,
+            @RequestParam(value = "ctimeEnd", required = false) long ctimeEnd
+    ) {
+        return ResultUtil.success(chatRecordService.listChatRecords(from, to, ctimeStart, ctimeEnd));
+    }
+
     @RequestMapping(value = "/listUnReadMessages", method = RequestMethod.GET)
     public Result listUnReadMessages(@RequestHeader("token") String token) {
         return ResultUtil.success(chatRecordService.listUnReadMessages(token));

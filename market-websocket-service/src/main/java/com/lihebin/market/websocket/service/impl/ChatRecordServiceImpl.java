@@ -36,7 +36,12 @@ public class ChatRecordServiceImpl implements ChatRecordService{
 
         return chatRecordDao.findByFromOrToPage(from, to, ctimeStart, ctimeEnd,
                 PageRequest.of(pageNo, pageSize,
-                        Sort.by(Sort.Direction.DESC, "ctime")));
+                        Sort.by(Sort.Direction.ASC, "ctime")));
+    }
+
+    @Override
+    public List<ChatRecordEntity> listChatRecords(String from, String to, long ctimeStart, long ctimeEnd) {
+        return chatRecordDao.findByFromOrToList(from, to, ctimeStart, ctimeEnd);
     }
 
     @Override
