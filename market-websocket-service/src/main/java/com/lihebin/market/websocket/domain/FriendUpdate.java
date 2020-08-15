@@ -15,7 +15,7 @@ public class FriendUpdate {
 
 
     @NotNull
-    private Long id;
+    private String friendName;
 
     @NotBlank
     private String remark;

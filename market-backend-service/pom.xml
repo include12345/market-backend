@@ -32,12 +32,6 @@
 
         <dependency>
             <groupId>com.lihebin.market</groupId>
-            <artifactId>market-backend-files</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.lihebin.market</groupId>
             <artifactId>market-websocket-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

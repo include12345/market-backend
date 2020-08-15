@@ -164,12 +164,10 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public boolean updateFriend(String token, FriendUpdate friendUpdate) {
         String username = userCache.getUsername(token);
-        Optional<UserFriend> userFriendOptional = userFriendDao.findById(friendUpdate.getId());
-        if (userFriendOptional.isPresent()
-                && userFriendOptional.get().getUsername().equals(username)) {
-            UserFriend userFriendOld = userFriendOptional.get();
-            userFriendOld.setRemark(friendUpdate.getRemark());
-            userFriendDao.save(userFriendOld);
+        UserFriend userFriend = userFriendDao.findByUsernameAndFriendname(username, friendUpdate.getFriendName());
+        if (userFriend != null) {
+            userFriend.setRemark(friendUpdate.getRemark());
+            userFriendDao.save(userFriend);
             return true;
         }
         return false;
