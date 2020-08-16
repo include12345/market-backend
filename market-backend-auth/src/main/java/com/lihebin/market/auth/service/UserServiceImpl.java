@@ -1,18 +1,20 @@
-package com.lihebin.market.service.impl;
+package com.lihebin.market.auth.service;
 
+import com.lihebin.market.auth.bean.*;
 import com.lihebin.market.bean.Code;
 import com.lihebin.market.cache.RedisDao;
+import com.lihebin.market.cache.UserCache;
 import com.lihebin.market.dao.MerchantUserDao;
 import com.lihebin.market.exception.BackendException;
 import com.lihebin.market.model.MerchantUser;
-import com.lihebin.market.params.Login;
-import com.lihebin.market.params.LoginRes;
-import com.lihebin.market.service.UserService;
 import com.lihebin.market.utils.MD5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private MerchantUserDao merchantUserDao;
+
+    @Autowired
+    private UserCache userCache;
 
     @Override
     public LoginRes login(Login login) {
@@ -59,5 +64,51 @@ public class UserServiceImpl implements UserService {
         if (!result) {
             throw new BackendException(Code.CODE_NOT_EXIST, "退出失败");
         }
+    }
+
+    @Transactional
+    @Override
+    public UserRes addUser(@Valid UserNew userNew) {
+        MerchantUser merchantUser = merchantUserDao.findMerchantUserByUsername(userNew.getUsername());
+        if (merchantUser != null) {
+            throw new BackendException(Code.CODE_EXIST, "用户已存在");
+        }
+        merchantUser = new MerchantUser();
+        merchantUser.setUsername(userNew.getUsername());
+        merchantUser.setPassword(userNew.getPassword());
+        merchantUserDao.save(merchantUser);
+        UserRes userRes = new UserRes();
+        userRes.setUsername(userNew.getUsername());
+        return userRes;
+    }
+
+
+    @Transactional
+    @Override
+    public UserRes updateUser(@Valid String token, UserUpdate userUpdate) {
+        String username = userCache.getUsername(token);
+        if (username == null) {
+            throw new BackendException(Code.CODE_NOT_EXIST, "用户不存在");
+        }
+        MerchantUser merchantUser = merchantUserDao.findMerchantUserByUsername(username);
+        if (merchantUser == null) {
+            throw new BackendException(Code.CODE_NOT_EXIST, "用户不存在");
+        }
+        if (!StringUtils.isEmpty(userUpdate.getPassword())) {
+            merchantUser.setPassword(userUpdate.getPassword());
+        }
+        if (!StringUtils.isEmpty(userUpdate.getImageUrl())) {
+            merchantUser.setImageUrl(userUpdate.getImageUrl());
+        }
+        merchantUserDao.save(merchantUser);
+        UserRes userRes = new UserRes();
+        userRes.setUsername(username);
+        userRes.setImageUrl(userUpdate.getImageUrl());
+        return userRes;
+    }
+
+    @Override
+    public UserRes getUser(String token) {
+        return null;
     }
 }

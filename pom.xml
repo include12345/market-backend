@@ -13,6 +13,7 @@
         <module>market-backend-utils</module>
         <module>market-backend-sql</module>
         <module>market-websocket-service</module>
+        <module>market-backend-auth</module>
     </modules>
 
     <parent>

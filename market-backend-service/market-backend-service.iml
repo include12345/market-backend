@@ -18,6 +18,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="market-backend-sql" />
     <orderEntry type="module" module-name="market-backend-utils" />
+    <orderEntry type="module" module-name="market-backend-auth" />
     <orderEntry type="module" module-name="market-websocket-service" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-websocket:2.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.2.3.RELEASE" level="project" />

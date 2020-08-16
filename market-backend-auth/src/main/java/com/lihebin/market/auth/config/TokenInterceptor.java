@@ -1,4 +1,4 @@
-package com.lihebin.market.config;
+package com.lihebin.market.auth.config;
 
 import com.lihebin.market.bean.Code;
 import com.lihebin.market.cache.RedisDao;

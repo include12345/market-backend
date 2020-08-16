@@ -1,4 +1,4 @@
-package com.lihebin.market.params;
+package com.lihebin.market.auth.bean;
 
 import javax.validation.constraints.NotNull;
 

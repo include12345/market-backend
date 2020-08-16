@@ -9,12 +9,12 @@
         <mvc:interceptor>
             <mvc:mapping path="/api/**"/>
             <!--<mvc:exclude-mapping path="/user/api/check"/>-->
-            <bean class="com.lihebin.market.config.TokenInterceptor"/>
+            <bean class="com.lihebin.market.auth.config.TokenInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/user/api/check"/>
             <!--<mvc:exclude-mapping path="/user/api/check"/>-->
-            <bean class="com.lihebin.market.config.TokenInterceptor"/>
+            <bean class="com.lihebin.market.auth.config.TokenInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
