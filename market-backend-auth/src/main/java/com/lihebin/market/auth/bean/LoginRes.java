@@ -14,6 +14,8 @@ public class LoginRes {
 
     private Integer type;
 
+    private String imageUrl;
+
     public Long getMerchantId() {
         return merchantId;
     }
@@ -44,5 +46,13 @@ public class LoginRes {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

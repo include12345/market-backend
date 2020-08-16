@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
         loginRes.setToken(sign);
         loginRes.setMerchantId(merchantUser.getMerchant_id());
         loginRes.setType(merchantUser.getType());
+        loginRes.setImageUrl(merchantUser.getImageUrl());
         return loginRes;
     }
 

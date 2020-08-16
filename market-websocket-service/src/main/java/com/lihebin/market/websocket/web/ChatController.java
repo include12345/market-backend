@@ -87,12 +87,12 @@ public class ChatController {
     @MessageMapping(StompConstant.SUB_USER)
     public void sendToUser(MessageVO messageVO) {
         if (MessageTypeEnum.HAS_READ.equals(messageVO.getType())) {
-            chatRecordService.updateChatRecordReadedStatus(messageVO.getFrom(),
-                    messageVO.getTo());
+//            chatRecordService.updateChatRecordReadedStatus(messageVO.getFrom(),
+//                    messageVO.getTo());
             return;
         }
         messageVO.setType(MessageTypeEnum.SMS);
-        chatRecordService.createChatRecord(messageVO);
+//        chatRecordService.createChatRecord(messageVO);
         template.convertAndSendToUser(messageVO.getTo(), StompConstant.SUB_USER,
                 ResultUtil.success(messageVO));
     }

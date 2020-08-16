@@ -28,7 +28,7 @@ spring:
         show-sql: true
     data:
         mongodb:
-          host: 129.28.192.214
+          host: localhost #129.28.192.214
           port: 27017
           database: chat
           password: Include123456
