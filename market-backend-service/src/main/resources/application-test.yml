@@ -33,6 +33,18 @@ spring:
           database: chat
           password: Include123456
           username: include
+        elasticsearch:
+          client:
+            reactive:
+              endpoints: 172.0.0.1:9200
+              password: test
+              username: test
+              connection-timeout: 3000
+              use-ssl: false
+              socket-timeout: 3000
+          repositories:
+            enabled: true
+
     redis:
         database: 2
         host: 129.28.192.214
