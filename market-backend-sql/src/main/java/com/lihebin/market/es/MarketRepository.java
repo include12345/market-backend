@@ -4,13 +4,14 @@ import com.lihebin.market.es.model.MarketModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.springframework.stereotype.Repository;
 
 import java.awt.print.Pageable;
-import java.util.Map;
 
 /**
  * Created by lihebin on 2020/8/17.
  */
+@Repository
 public interface MarketRepository extends ElasticsearchRepository<MarketModel, Long>{
 
     @Query("{\"bool\" {\"must\": {\"field\" :{\"title\" :\"?0\"}}}}")

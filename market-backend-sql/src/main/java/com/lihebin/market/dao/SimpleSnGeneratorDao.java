@@ -32,7 +32,7 @@ public class SimpleSnGeneratorDao {
     private static final Random random = new Random();
     private int retries = 3;
 
-    private String orderSnPrefix = "order";
+    private String orderSnPrefix = "123";
 
     private static String[] permTables = {
             "2076943518",

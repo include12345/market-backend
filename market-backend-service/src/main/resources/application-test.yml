@@ -18,6 +18,18 @@ spring:
             url: jdbc:mysql://129.28.192.214:3306/market?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=PRC&useSSL=false
             username: root
             validationQuery: SELECT 'x'
+        db0:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://129.28.192.214:3306/db0?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=PRC&useSSL=false
+            username: root
+            password: Include_123456
+        db0:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://129.28.192.214:3306/db1?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=PRC&useSSL=false
+            username: root
+            password: Include_123456
+
+
     jpa:
         properties:
             hibernate:
