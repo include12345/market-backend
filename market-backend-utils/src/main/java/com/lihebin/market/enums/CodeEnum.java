@@ -17,7 +17,11 @@ public enum CodeEnum implements Code {
 
     FAILED(503, "处理失败! "),
 
-    SUCCESS(200, "成功");
+    SUCCESS(200, "成功"),
+    FAIL_UN_LOGIN(601, "请登录"),
+    FAIL_UN_AUTHZ(606, "无操作权限");
+
+
 
     private int code;
     private String desc;

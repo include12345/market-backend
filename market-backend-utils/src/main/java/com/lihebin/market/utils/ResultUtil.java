@@ -3,6 +3,7 @@ package com.lihebin.market.utils;
 
 import com.lihebin.market.bean.Code;
 import com.lihebin.market.bean.Result;
+import com.lihebin.market.enums.CodeEnum;
 
 /**
  * Created by lihebin on 2019/5/22.
@@ -38,6 +39,13 @@ public class ResultUtil {
         Result result = new Result();
         result.setCode(code);
         result.setMsg(msg);
+        return result;
+    }
+
+    public static Result error(CodeEnum code) {
+        Result result = new Result();
+        result.setCode(code.getCode());
+        result.setMsg(code.getDesc());
         return result;
     }
 }
