@@ -1,10 +1,12 @@
 package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
+import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.RoleReq;
 import com.lihebin.market.wx.domain.StorageReq;
+import com.lihebin.market.wx.service.StorageService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,16 +20,18 @@ import java.io.IOException;
 @RequestMapping("/admin/storage")
 public class StorageController {
 
+    @Autowired
+    private StorageService storageService;
+
     @RequiresPermissions("admin:storage:list")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "查询")
     @GetMapping("/list")
     public Result list(String key, String name,
-                       @RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer pageSize,
-                       @RequestParam(defaultValue = "addTime") String sort,
-                       @RequestParam(defaultValue = "desc") String orderBy) {
-        //todo
-        return null;
+                                      @RequestParam(defaultValue = "1") Integer page,
+                                      @RequestParam(defaultValue = "10") Integer pageSize,
+                                      @RequestParam(defaultValue = "addTime") String sort,
+                                      @RequestParam(defaultValue = "true") Boolean desc) {
+        return ResultUtil.success(storageService.list(key, name, page, pageSize, sort, desc));
     }
 
     @RequiresPermissions("admin:storage:create")
