@@ -2,6 +2,9 @@ package com.lihebin.market.wx.service;
 
 import com.lihebin.market.data.model.StorageData;
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @description: some desc
@@ -24,4 +27,11 @@ public interface StorageService {
      */
     Page<StorageData> list(String key, String name, int page, int pageSize, String sort, boolean desc);
 
+    /**
+     * 存储一个文件对象
+     *
+     * @param file
+     * @return
+     */
+    StorageData create(MultipartFile file) throws IOException;
 }

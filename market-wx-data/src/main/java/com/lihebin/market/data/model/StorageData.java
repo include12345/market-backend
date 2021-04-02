@@ -48,7 +48,7 @@ public class StorageData {
      * 文件大小
      */
     @Column
-    private Integer size;
+    private Long size;
 
     /**
      * 文件访问链接

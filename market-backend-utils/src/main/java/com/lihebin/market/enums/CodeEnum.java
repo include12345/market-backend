@@ -19,7 +19,11 @@ public enum CodeEnum implements Code {
 
     SUCCESS(200, "成功"),
     FAIL_UN_LOGIN(601, "请登录"),
-    FAIL_UN_AUTHZ(606, "无操作权限");
+    FAIL_UN_AUTHZ(606, "无操作权限"),
+    FAIL_PARAMS(607, "参数错误! "),
+    FAIL_IO_ERROR(608, "IO异常"),
+    FAIL_FILE_NAME_NULL(609, "文件名称不能为空"),
+    FAIL_SYSTEM_ERROR(999, "系统错误! ");
 
 
 

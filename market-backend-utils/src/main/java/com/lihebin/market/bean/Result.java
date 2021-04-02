@@ -1,5 +1,7 @@
 package com.lihebin.market.bean;
 
+import com.lihebin.market.enums.CodeEnum;
+
 /**
  * Created by lihebin on 2019/5/22.
  */
@@ -41,13 +43,9 @@ public class Result<T> {
     public Result() {
     }
 
-//    public Result(Integer code, String msg) {
-//        this(code, msg, null);
-//    }
-//
-//    public Result(Integer code, String msg, T data) {
-//        this.code = code;
-//        this.msg = msg;
-//        this.data = data;
-//    }
+    public Result(CodeEnum codeEnum, T data) {
+        this.code = codeEnum.getCode();
+        this.msg = codeEnum.getDesc();
+        this.data = data;
+    }
 }

@@ -1,12 +1,14 @@
 package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
+import com.lihebin.market.data.model.StorageData;
 import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
 import com.lihebin.market.wx.domain.StorageReq;
 import com.lihebin.market.wx.service.StorageService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,20 +28,20 @@ public class StorageController {
     @RequiresPermissions("admin:storage:list")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "查询")
     @GetMapping("/list")
-    public Result list(String key, String name,
-                                      @RequestParam(defaultValue = "1") Integer page,
-                                      @RequestParam(defaultValue = "10") Integer pageSize,
-                                      @RequestParam(defaultValue = "addTime") String sort,
-                                      @RequestParam(defaultValue = "true") Boolean desc) {
-        return ResultUtil.success(storageService.list(key, name, page, pageSize, sort, desc));
+    public Result<Page<StorageData>> list(String key, String name,
+                                          @RequestParam(defaultValue = "1") Integer page,
+                                          @RequestParam(defaultValue = "10") Integer pageSize,
+                                          @RequestParam(defaultValue = "addTime") String sort,
+                                          @RequestParam(defaultValue = "true") Boolean desc) {
+        return ResultUtil.ok(storageService.list(key, name, page, pageSize, sort, desc));
     }
 
     @RequiresPermissions("admin:storage:create")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "上传")
     @PostMapping("/create")
-    public Result create(@RequestParam("file") MultipartFile file) throws IOException {
+    public Result<StorageData> create(@RequestParam("file") MultipartFile file) throws IOException {
         //todo
-        return null;
+            return ResultUtil.ok(storageService.create(file));
     }
 
     @RequiresPermissions("admin:storage:read")

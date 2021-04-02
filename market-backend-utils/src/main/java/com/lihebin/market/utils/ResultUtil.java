@@ -17,12 +17,16 @@ public class ResultUtil {
      */
     public static Result success(Object object) {
         Result result = new Result();
-        result.setCode(Code.CODE_SUCCESS);
-        result.setMsg("SUCCESS");
+        result.setCode(CodeEnum.SUCCESS.getCode());
+        result.setMsg(CodeEnum.SUCCESS.getDesc());
         if (object != null) {
             result.setData(object);
         }
         return result;
+    }
+
+    public static <T> Result<T> ok(T object) {
+        return new Result<>(CodeEnum.SUCCESS, object);
     }
 
 
