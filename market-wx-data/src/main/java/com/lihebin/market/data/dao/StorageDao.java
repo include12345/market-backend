@@ -19,4 +19,13 @@ public interface StorageDao extends JpaRepository<StorageData, Long>, JpaSpecifi
      * @return
      */
     StorageData findDistinctByKeyAndDeleted(String key, boolean deleted);
+
+    /**
+     * 根据id查询
+     *
+     * @param id
+     * @param deleted
+     * @return
+     */
+    StorageData findByIdAndDeleted(long id, boolean deleted);
 }

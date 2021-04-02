@@ -34,4 +34,19 @@ public interface StorageService {
      * @return
      */
     StorageData create(MultipartFile file) throws IOException;
+
+    /**
+     * 读取对象存储
+     * @param id
+     * @return
+     */
+    StorageData read(long id);
+
+    /**
+     * 删除对象存储
+     *
+     * @param id
+     * @return
+     */
+    boolean delete(long id);
 }

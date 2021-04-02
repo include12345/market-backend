@@ -40,16 +40,14 @@ public class StorageController {
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "上传")
     @PostMapping("/create")
     public Result<StorageData> create(@RequestParam("file") MultipartFile file) throws IOException {
-        //todo
             return ResultUtil.ok(storageService.create(file));
     }
 
     @RequiresPermissions("admin:storage:read")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "详情")
     @GetMapping("/read")
-    public Result read(@NotNull Long id) {
-        //todo
-        return null;
+    public Result<StorageData> read(@NotNull Long id) {
+        return ResultUtil.ok(storageService.read(id));
     }
 
     @RequiresPermissions("admin:storage:update")
@@ -63,9 +61,8 @@ public class StorageController {
     @RequiresPermissions("admin:storage:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "删除")
     @PostMapping("/delete")
-    public Result delete(@RequestBody StorageReq storageReq) {
-        //todo
-        return null;
+    public Result<Boolean> delete(@RequestBody StorageReq storageReq) {
+        return ResultUtil.ok(storageService.delete(storageReq.getId()));
     }
 
 }
