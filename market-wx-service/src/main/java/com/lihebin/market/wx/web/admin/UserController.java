@@ -8,6 +8,9 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @description: 会员
@@ -46,4 +49,5 @@ public class UserController {
         //todo
         return null;
     }
+
 }

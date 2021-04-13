@@ -1,8 +1,13 @@
 package com.lihebin.market.wx.web.client;
 
 import com.lihebin.market.bean.Result;
+import com.lihebin.market.data.model.StorageData;
+import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.annotation.LoginUser;
+import com.lihebin.market.wx.service.StorageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +25,9 @@ import java.io.IOException;
 @RequestMapping("/client/storage")
 public class StorageController {
 
+    @Autowired
+    private StorageService storageService;
+
 
     /**
      * 上传图片
@@ -29,9 +37,8 @@ public class StorageController {
      * @throws IOException
      */
     @PostMapping("/upload")
-    public Result upload(@RequestParam("file") MultipartFile file) throws IOException {
-        //todo
-        return null;
+    public Result<StorageData> upload(@RequestParam("file") MultipartFile file) throws IOException {
+        return ResultUtil.ok(storageService.create(file));
     }
 
 
@@ -42,8 +49,8 @@ public class StorageController {
      * @return
      */
     @GetMapping("/fetch/{key:.+}")
-    public ResponseEntity<Resource> index(@PathVariable String key) {
-        return null;
+    public Result<ResponseEntity<Resource>> index(@PathVariable String key) {
+        return ResultUtil.ok(storageService.loadAsResource(key));
     }
 
     /**
@@ -53,8 +60,8 @@ public class StorageController {
      * @return
      */
     @GetMapping("/download/{key:.+}")
-    public ResponseEntity<Resource> download(@PathVariable String key) {
-        return null;
+    public Result<ResponseEntity<Resource>> download(@PathVariable String key) {
+        return ResultUtil.ok(storageService.download(key));
     }
 
 }

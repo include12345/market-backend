@@ -1,7 +1,9 @@
 package com.lihebin.market.wx.service;
 
 import com.lihebin.market.data.model.StorageData;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -35,6 +37,15 @@ public interface StorageService {
      */
     StorageData create(MultipartFile file) throws IOException;
 
+
+    /**
+     * 根据key获取文件
+     *
+     * @param keyName
+     * @return
+     */
+    ResponseEntity<Resource> loadAsResource(String keyName);
+
     /**
      * 读取对象存储
      * @param id
@@ -49,4 +60,12 @@ public interface StorageService {
      * @return
      */
     boolean delete(long id);
+
+    /**
+     * 根据key获取文件
+     *
+     * @param key
+     * @return
+     */
+    ResponseEntity<Resource> download(String key);
 }

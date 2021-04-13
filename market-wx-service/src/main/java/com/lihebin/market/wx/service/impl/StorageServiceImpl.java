@@ -10,9 +10,13 @@ import com.lihebin.market.wx.service.StorageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -94,6 +98,24 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
+    public ResponseEntity<Resource> loadAsResource(String keyName) {
+        StorageData storageData = storageDao.findDistinctByKeyAndDeleted(keyName, false);
+        if (storageData == null) {
+            throw new BackendException(CodeEnum.KEY_NAME_NULL);
+        }
+        if (keyName.contains("../")) {
+            throw new BackendException(CodeEnum.FAIL_PARAMS);
+        }
+        String type = storageData.getType();
+        MediaType mediaType = MediaType.parseMediaType(type);
+        Resource file = storage.loadAsResource(keyName);
+        if (file == null) {
+            throw new BackendException(CodeEnum.KEY_NAME_NULL);
+        }
+        return ResponseEntity.ok().contentType(mediaType).body(file);
+    }
+
+    @Override
     public StorageData read(long id) {
         return storageDao.findByIdAndDeleted(id, false);
     }
@@ -111,6 +133,25 @@ public class StorageServiceImpl implements StorageService {
             log.error("delete", e);
             return false;
         }
+    }
+
+    @Override
+    public ResponseEntity<Resource> download(String key) {
+        StorageData storageData = storageDao.findDistinctByKeyAndDeleted(key, false);
+        if (storageData == null) {
+            throw new BackendException(CodeEnum.KEY_NAME_NULL);
+        }
+        if (key.contains("../")) {
+            throw new BackendException(CodeEnum.FAIL_PARAMS);
+        }
+        String type = storageData.getType();
+        MediaType mediaType = MediaType.parseMediaType(type);
+        Resource file = storage.loadAsResource(key);
+        if (file == null) {
+            throw new BackendException(CodeEnum.KEY_NAME_NULL);
+        }
+        return ResponseEntity.ok().contentType(mediaType).header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
 
