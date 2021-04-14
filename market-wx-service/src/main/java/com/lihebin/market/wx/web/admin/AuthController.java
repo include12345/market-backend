@@ -1,11 +1,11 @@
 package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
-import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.AfterSaleReq;
+import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.domain.AuthReq;
+import com.lihebin.market.wx.service.AuthService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/admin/auth")
 public class AuthController {
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping("/kaptcha")
     public Result kaptcha(HttpServletRequest request) {
-        //todo
-        return null;
+        return ResultUtil.ok(authService.getKaptcha(request));
     }
 
 

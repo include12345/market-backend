@@ -24,6 +24,8 @@ public enum CodeEnum implements Code {
     FAIL_IO_ERROR(608, "IO异常"),
     FAIL_FILE_NAME_NULL(609, "文件名称不能为空"),
     KEY_NAME_NULL(610, "根据key查不到文件"),
+    KAPTCHA_NULL(620, "声称验证码失败"),
+
 
     FAIL_SYSTEM_ERROR(999, "系统错误! ");
 
