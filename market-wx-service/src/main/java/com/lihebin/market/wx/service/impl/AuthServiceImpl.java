@@ -1,9 +1,20 @@
 package com.lihebin.market.wx.service.impl;
 
 import com.google.code.kaptcha.Producer;
+import com.lihebin.market.data.dao.AdminDao;
+import com.lihebin.market.data.model.AdminData;
 import com.lihebin.market.enums.CodeEnum;
 import com.lihebin.market.exception.BackendException;
+import com.lihebin.market.utils.IpUtil;
+import com.lihebin.market.wx.domain.AuthReq;
+import com.lihebin.market.wx.domain.AuthResult;
 import com.lihebin.market.wx.service.AuthService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Base64;
 
 /**
@@ -23,6 +35,9 @@ public class AuthServiceImpl implements AuthService{
 
     @Autowired
     private Producer kaptchaProducer;
+
+    @Autowired
+    private AdminDao adminDao;
 
     @Override
     public String getKaptcha(HttpServletRequest request) {
@@ -40,5 +55,36 @@ public class AuthServiceImpl implements AuthService{
         } catch (IOException e) {
             throw new BackendException(CodeEnum.KAPTCHA_NULL);
         }
+    }
+
+    @Override
+    public AuthResult adminLogin(AuthReq authReq, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String kaptcha = (String)session.getAttribute("kaptcha");
+        if (!authReq.getCode().equalsIgnoreCase(kaptcha)) {
+            throw new BackendException(CodeEnum.KAPTCHA_ERROR);
+        }
+        Subject currentUser = SecurityUtils.getSubject();
+        try {
+            currentUser.login(new UsernamePasswordToken(authReq.getUsername(), authReq.getPassword()));
+        } catch (UnknownAccountException uae) {
+            throw new BackendException(CodeEnum.FAIL_UN_LOGIN_USER_OR_PASS);
+
+        } catch (LockedAccountException lae) {
+            throw new BackendException(CodeEnum.FAIL_UN_LOGIN_CHECKED);
+        } catch (AuthenticationException ae) {
+            throw new BackendException(CodeEnum.FAIL_UN_LOGIN_NO_AUTH);
+        }
+        currentUser = SecurityUtils.getSubject();
+
+        AdminData adminData = (AdminData) currentUser.getPrincipal();
+        adminData.setLastLoginIp(IpUtil.getIpAddr(request));
+        adminData.setLastLoginTime(System.currentTimeMillis());
+        adminDao.save(adminData);
+        AuthResult authResult = new AuthResult();
+        authResult.setAvatar(adminData.getAvatar());
+        authResult.setNickName(adminData.getUsername());
+        authResult.setToken(currentUser.getSession().getId().toString());
+        return authResult;
     }
 }

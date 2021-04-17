@@ -49,6 +49,6 @@ public class AdminReq {
     /**
      * 角色列表
      */
-    private List<Integer> roleIds;
+    private List<Long> roleIds;
 
 }

@@ -31,8 +31,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public Result login(@RequestBody AuthReq authReq, HttpServletRequest request) {
-        //todo
-        return null;
+        return ResultUtil.ok(authService.adminLogin(authReq, request));
     }
 
     @RequiresAuthentication
