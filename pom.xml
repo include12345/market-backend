@@ -35,6 +35,7 @@
         <sharding.version>4.0.0-RC2</sharding.version>
         <wxpay.version>3.3.0</wxpay.version>
         <shiro.spring.version>1.7.1</shiro.spring.version>
+        <caffeine.cache.version>2.7.0</caffeine.cache.version>
     </properties>
 
     <dependencies>
@@ -144,6 +145,11 @@
             <version>${sharding.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.cache.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.redisson</groupId>

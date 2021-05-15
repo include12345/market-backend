@@ -3,6 +3,7 @@ package com.lihebin.market.wx.web.admin;
 import com.lihebin.market.bean.Result;
 import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.domain.AuthReq;
+import com.lihebin.market.wx.domain.AuthResult;
 import com.lihebin.market.wx.service.AuthService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +25,27 @@ public class AuthController {
     private AuthService authService;
 
     @GetMapping("/kaptcha")
-    public Result kaptcha(HttpServletRequest request) {
+    public Result<String> kaptcha(HttpServletRequest request) {
         return ResultUtil.ok(authService.getKaptcha(request));
     }
 
 
     @PostMapping("/login")
-    public Result login(@RequestBody AuthReq authReq, HttpServletRequest request) {
+    public Result<AuthResult> login(@RequestBody AuthReq authReq, HttpServletRequest request) {
         return ResultUtil.ok(authService.adminLogin(authReq, request));
     }
 
     @RequiresAuthentication
     @PostMapping("/logout")
     public Result logout() {
-        //todo
-        return null;
+        authService.adminLogout();
+        return ResultUtil.success();
     }
 
     @RequiresAuthentication
     @PostMapping("/info")
     public Result info() {
-        //todo
-        return null;
+        return ResultUtil.ok(authService.adminInfo());
+
     }
 }

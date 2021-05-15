@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: data, core
+    active: data, core, utils
   messages:
     encoding: UTF-8
   servlet:

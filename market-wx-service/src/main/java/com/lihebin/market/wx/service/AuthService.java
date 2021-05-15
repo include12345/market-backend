@@ -1,5 +1,6 @@
 package com.lihebin.market.wx.service;
 
+import com.lihebin.market.wx.domain.AuthInfoResult;
 import com.lihebin.market.wx.domain.AuthReq;
 import com.lihebin.market.wx.domain.AuthResult;
 
@@ -27,4 +28,16 @@ public interface AuthService {
      * @return
      */
     AuthResult adminLogin(AuthReq authReq, HttpServletRequest request);
+
+    /**
+     * 登出
+     */
+    void adminLogout();
+
+    /**
+     * 获取用户权限
+     *
+     * @return
+     */
+    AuthInfoResult adminInfo();
 }
