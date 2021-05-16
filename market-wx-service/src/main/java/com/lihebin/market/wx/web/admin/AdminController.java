@@ -2,8 +2,8 @@ package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.AdReq;
-import com.lihebin.market.wx.domain.AdminReq;
+import com.lihebin.market.wx.domain.req.AdReq;
+import com.lihebin.market.wx.domain.req.AdminReq;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +25,7 @@ public class AdminController {
     public Result list(String username,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer pageSize,
-                       @RequestParam(defaultValue = "addTime") String sort,
+                       @RequestParam(defaultValue = "ctime") String sort,
                        @RequestParam(defaultValue = "desc") String orderBy) {
         //todo
         return null;

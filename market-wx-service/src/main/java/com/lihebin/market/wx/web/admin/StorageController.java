@@ -4,7 +4,7 @@ import com.lihebin.market.bean.Result;
 import com.lihebin.market.data.model.StorageData;
 import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.StorageReq;
+import com.lihebin.market.wx.domain.req.StorageReq;
 import com.lihebin.market.wx.service.StorageService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

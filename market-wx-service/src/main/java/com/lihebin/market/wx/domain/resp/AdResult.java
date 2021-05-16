@@ -1,4 +1,4 @@
-package com.lihebin.market.wx.domain;
+package com.lihebin.market.wx.domain.resp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,18 +6,14 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * @description: 推广请求参数
- * @author: lihebin
- * @email: include_lihebin@163.com
- * @date: 2021/3/23 9:43 下午
+ * 推广出参
+ *
+ * Created by lihebin on 2021/5/16.
  */
 @Setter
 @Getter
-public class AdReq {
+public class AdResult {
 
-    /**
-     * id
-     */
     private Long id;
 
     /**
@@ -56,10 +52,12 @@ public class AdReq {
     private Date endTime;
 
     /**
-     * 是否启动
+     * 是否启用
      */
     private Boolean enabled;
 
+    private Date ctime;
 
+    private Date mtime;
 
 }

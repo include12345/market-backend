@@ -1,9 +1,16 @@
 package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
+import com.lihebin.market.utils.ResultUtil;
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.AdReq;
+import com.lihebin.market.wx.domain.req.AdReq;
+import com.lihebin.market.wx.domain.resp.AdResult;
+import com.lihebin.market.wx.service.AdService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
@@ -15,16 +22,19 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("/admin/ad")
 public class AdController {
 
+    @Autowired
+    private AdService adService;
+
     @RequiresPermissions("admin:ad:list")
     @RequiresPermissionsDesc(menu = {"推广管理", "广告管理"}, button = "查询")
     @GetMapping("/list")
-    public Result list(String name, String content,
-                       @RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer pageSize,
-                       @RequestParam(defaultValue = "addTime") String sort,
-                       @RequestParam(defaultValue = "desc") String orderBy) {
-        //todo
-        return null;
+    public Result<Page<AdResult>> list(String name, String content,
+                                       @RequestParam(defaultValue = "1") Integer page,
+                                       @RequestParam(defaultValue = "10") Integer pageSize,
+                                       @RequestParam(defaultValue = "ctime") String sort,
+                                       @RequestParam(defaultValue = "desc") Sort.Direction direction) {
+
+        return ResultUtil.ok(adService.listAd(name, content, PageRequest.of(page, pageSize, Sort.by(direction, sort))));
     }
 
     @RequiresPermissions("admin:ad:create")

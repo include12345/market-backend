@@ -2,8 +2,8 @@ package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
 import com.lihebin.market.utils.ResultUtil;
-import com.lihebin.market.wx.domain.AuthReq;
-import com.lihebin.market.wx.domain.AuthResult;
+import com.lihebin.market.wx.domain.req.AuthReq;
+import com.lihebin.market.wx.domain.resp.AuthResult;
 import com.lihebin.market.wx.service.AuthService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;

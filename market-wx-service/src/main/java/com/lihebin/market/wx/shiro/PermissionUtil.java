@@ -1,7 +1,7 @@
 package com.lihebin.market.wx.shiro;
 
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.PermResult;
+import com.lihebin.market.wx.domain.resp.PermResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

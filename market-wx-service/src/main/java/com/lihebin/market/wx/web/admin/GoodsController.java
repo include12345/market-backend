@@ -2,8 +2,7 @@ package com.lihebin.market.wx.web.admin;
 
 import com.lihebin.market.bean.Result;
 import com.lihebin.market.wx.annotation.RequiresPermissionsDesc;
-import com.lihebin.market.wx.domain.CouponReq;
-import com.lihebin.market.wx.domain.GoodsReq;
+import com.lihebin.market.wx.domain.req.GoodsReq;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 

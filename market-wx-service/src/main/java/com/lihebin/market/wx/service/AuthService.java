@@ -1,8 +1,8 @@
 package com.lihebin.market.wx.service;
 
-import com.lihebin.market.wx.domain.AuthInfoResult;
-import com.lihebin.market.wx.domain.AuthReq;
-import com.lihebin.market.wx.domain.AuthResult;
+import com.lihebin.market.wx.domain.resp.AuthInfoResult;
+import com.lihebin.market.wx.domain.req.AuthReq;
+import com.lihebin.market.wx.domain.resp.AuthResult;
 
 import javax.servlet.http.HttpServletRequest;
 

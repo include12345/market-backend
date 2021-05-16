@@ -2,11 +2,9 @@ package com.lihebin.market.wx.web.client;
 
 import com.lihebin.market.bean.Result;
 import com.lihebin.market.wx.annotation.LoginUser;
-import com.lihebin.market.wx.domain.AddressReq;
-import com.lihebin.market.wx.domain.CartReq;
+import com.lihebin.market.wx.domain.req.CartReq;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**

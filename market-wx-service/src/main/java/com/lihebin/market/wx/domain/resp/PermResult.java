@@ -1,4 +1,4 @@
-package com.lihebin.market.wx.domain;
+package com.lihebin.market.wx.domain.resp;
 
 import java.util.List;
 

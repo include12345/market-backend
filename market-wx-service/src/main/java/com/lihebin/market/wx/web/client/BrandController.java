@@ -1,8 +1,6 @@
 package com.lihebin.market.wx.web.client;
 
 import com.lihebin.market.bean.Result;
-import com.lihebin.market.wx.annotation.LoginUser;
-import com.lihebin.market.wx.domain.AfterSaleReq;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;

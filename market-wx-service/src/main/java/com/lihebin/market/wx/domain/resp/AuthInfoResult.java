@@ -1,4 +1,4 @@
-package com.lihebin.market.wx.domain;
+package com.lihebin.market.wx.domain.resp;
 
 import lombok.Getter;
 import lombok.Setter;
